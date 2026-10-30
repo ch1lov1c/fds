@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Услуги — WEBNICSS®</title>
+<meta name="description" content="Услуги студии WEBNICSS: сайты, Telegram-боты, дизайн, 3D, видео и автоматизация.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script src="bootstrap.js"></script>
+
+</head>
+<body class="is-loading" data-loader-label="Услуги">
+
+<div class="cursor" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="WEBNICSS на главную">WEBNICSS<sup>®</sup></a>
+  <div class="nav-info">
+    <p>Студия цифрового искусства<br>работаем по всему миру</p>
+    <p>Онлайн-студия без границ<br><span data-clock>00:00:00 · UTC+3</span></p>
+  </div>
+</header>
+
+<button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
+  <span class="menu-ico"><i></i><i></i><i></i></span><span class="menu-label">МЕНЮ</span>
+</button>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-scrim" data-menu-close></div>
+  <aside class="menu-panel">
+    <div class="menu-head">
+      <span><i class="sq"></i>Меню</span>
+      <span><i class="sq"></i>WEBNICSS</span>
+    </div>
+    <nav class="menu-list" id="menuList"></nav>
+  </aside>
+</div>
+
+<!-- загрузчик -->
+<div class="loader" aria-hidden="true">
+  <div class="ld-curtain ld-back"></div>
+  <div class="ld-curtain ld-front"></div>
+  <div class="ld-content">
+    <div class="ld-top">
+      <div class="ld-sphere-wrap">
+        <canvas class="ld-sphere" width="520" height="520"></canvas>
+      </div>
+      <span class="ld-tag">студия цифрового искусства</span>
+    </div>
+    <div class="ld-foot">
+      <div class="ld-name">
+        <span class="ld-name-char">W</span><span class="ld-name-char">E</span><span class="ld-name-char">B</span><span class="ld-name-char">N</span><span class="ld-name-char">I</span><span class="ld-name-char">C</span><span class="ld-name-char">S</span><span class="ld-name-char">S</span>
+      </div>
+      <div class="ld-meta">
+        <span class="ld-page" data-loader-bar>Услуги</span>
+        <span class="ld-line"><b data-loader-line></b></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <div class="crumb-row">
+        <nav class="crumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a><i>/</i><span>Услуги</span>
+        </nav>
+        <a class="home-btn" href="index.html" data-cursor>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          На главную
+        </a>
+      </div>
+      <p class="ac-label" data-reveal="soft"><span class="crosshair sm"></span>Каталог услуг студии</p>
+      <h1 class="page-display" data-intro>ЧТО МЫ <em>ДЕЛАЕМ</em></h1>
+      <p class="page-lead" data-reveal="soft">
+        Выберите направление — внутри каждого форматы работ с описанием, ориентировочной ценой и сроком.
+        Цены услуг в этой версии сайта предложены для согласования с владельцем и пока не утверждены.
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section sv-page">
+    <div class="wrap">
+      <div class="sv-pills" id="svPills"></div>
+      <div id="svRoot"></div>
+    </div>
+  </section>
+
+  <!-- ============ ФУТЕР / КОНТАКТ ============ -->
+  <footer class="footer" id="contact" data-nav-compact>
+    <div class="mosaic" data-mosaic aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <p class="ac-label"><span class="crosshair sm"></span>Контакт · © 2026</p>
+      <h2 class="ft-lines">
+        <span class="ft-line"><span class="display">ДАВАЙТЕ</span></span>
+        <span class="ft-line"><span class="display">СДЕЛАЕМ</span></span>
+        <span class="ft-line"><span class="display accent-text">ВАШ ПРОДУКТ</span></span>
+      </h2>
+      <div class="ft-cta">
+        <a href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer" class="btn-chip big" data-cursor>
+          <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="tel:+79608714367" class="btn-chip big ghost" data-cursor>
+          <span class="btn-label">Телефон менеджера</span><span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="ft-grid">
+        <nav class="ft-col" aria-label="Навигация в подвале">
+          <span class="ft-h"><i class="sq"></i>Навигация</span>
+          <a class="ul" href="index.html">Главная</a>
+          <a class="ul" href="projects.html#projects-list">Проекты</a>
+          <a class="ul" href="service.html#sites">Услуги</a>
+        </nav>
+        <div class="ft-col">
+          <span class="ft-h"><i class="sq"></i>Контакты</span>
+          <span class="ft-caption">Телефон менеджера</span>
+          <a class="ul ft-contact-value" href="tel:+79608714367">+7 (960) 871-43-67</a>
+          <span class="ft-caption">Электронная почта</span>
+          <a class="ul ft-contact-value" href="mailto:vladkarpovic21@gmail.com">vladkarpovic21@gmail.com</a>
+        </div>
+        <nav class="ft-col" aria-label="Социальные сети">
+          <span class="ft-h"><i class="sq"></i>Мы в сети</span>
+          <a class="ft-social" href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Менеджер · @webnicssmng</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://t.me/webnicss_bot" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Бот · @webnicss_bot</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://t.me/webnicss" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Канал · @webnicss</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://t.me/webnicss_reviews" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Отзывы · @webnicss_reviews</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://vk.ru/webnicss" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon vk" aria-hidden="true">VK</span><span class="ft-social-text"><b>ВКонтакте</b><small>Страница · vk.ru/webnicss</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+        <nav class="ft-col" aria-label="Документы и безопасность">
+          <span class="ft-h"><i class="sq"></i>Информация</span>
+          <a class="ul" href="privacy.html">Политика конфиденциальности</a>
+          <a class="ul" href="terms.html">Условия заказа и возврата</a>
+          <a class="ul" href="security.html">Безопасность</a>
+          <span class="ft-note">Онлайн-студия<br>На связи в Telegram и ВКонтакте</span>
+        </nav>
+      </div>
+      <div class="ft-bottom">
+        <span>© 2026 WEBNICSS® STUDIO</span>
+        <button class="to-top" data-cursor>Наверх ↑</button>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="gsap.min.js"></script>
+<script src="ScrollTrigger.min.js"></script>
+<script src="lenis.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

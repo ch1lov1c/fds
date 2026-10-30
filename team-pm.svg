@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#101826"/>
+      <stop offset="55%" stop-color="#070b11"/>
+      <stop offset="100%" stop-color="#030406"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7ff3ff"/>
+      <stop offset="45%" stop-color="#2fe6ff"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="needleC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7ff3ff"/>
+      <stop offset="100%" stop-color="#2fe6ff" stop-opacity=".35"/>
+    </linearGradient>
+    <linearGradient id="needleV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b79bff"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity=".3"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2fe6ff" stop-opacity=".15"/>
+      <stop offset="50%" stop-color="#7ff3ff" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity=".7"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="floor" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2fe6ff" stop-opacity=".32"/>
+      <stop offset="100%" stop-color="#2fe6ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+
+  <g fill="#7ff3ff" opacity=".75">
+    <circle cx="126" cy="176" r="2.4"/><circle cx="664" cy="146" r="2"/>
+    <circle cx="104" cy="452" r="1.8"/><circle cx="704" cy="430" r="2.3"/>
+    <circle cx="196" cy="636" r="1.8"/><circle cx="612" cy="648" r="2.1"/>
+    <circle cx="402" cy="104" r="1.7"/><circle cx="268" cy="236" r="1.5" opacity=".5"/>
+    <circle cx="548" cy="242" r="1.6" opacity=".55"/>
+  </g>
+
+  <!-- внешняя орбита -->
+  <ellipse cx="400" cy="380" rx="272" ry="78" fill="none" stroke="url(#ring)" stroke-width="2.6"
+           opacity=".6" transform="rotate(-14 400 380)" filter="url(#glow)"/>
+  <circle cx="142" cy="446" r="11" fill="#0d1622" stroke="#7ff3ff" stroke-width="1.6"/>
+  <circle cx="660" cy="314" r="9" fill="#0d1622" stroke="#b79bff" stroke-width="1.5"/>
+
+  <!-- корпус компаса: фасетное кольцо -->
+  <g filter="url(#glow)">
+    <polygon points="400,158 571,229 642,400 571,571 400,642 229,571 158,400 229,229"
+             fill="#0c141f" fill-opacity=".72" stroke="url(#edge)" stroke-width="3.2" stroke-linejoin="round"/>
+    <polygon points="400,158 571,229 400,400" fill="#ffffff" opacity=".05"/>
+    <polygon points="571,229 642,400 400,400" fill="#2fe6ff" opacity=".07"/>
+    <polygon points="642,400 571,571 400,400" fill="#8b5cf6" opacity=".10"/>
+    <polygon points="571,571 400,642 400,400" fill="#ffffff" opacity=".04"/>
+    <polygon points="400,642 229,571 400,400" fill="#2fe6ff" opacity=".05"/>
+    <polygon points="229,571 158,400 400,400" fill="#8b5cf6" opacity=".08"/>
+    <polygon points="158,400 229,229 400,400" fill="#ffffff" opacity=".05"/>
+    <polygon points="229,229 400,158 400,400" fill="#2fe6ff" opacity=".07"/>
+
+    <!-- внутренняя шкала -->
+    <circle cx="400" cy="400" r="148" fill="none" stroke="url(#edge)" stroke-width="2" opacity=".55"/>
+    <circle cx="400" cy="400" r="126" fill="#070d16" fill-opacity=".85" stroke="#2fe6ff" stroke-width="1.2" opacity=".9"/>
+    <!-- риски шкалы -->
+    <g stroke="#7ff3ff" stroke-width="2" opacity=".7">
+      <line x1="400" y1="262" x2="400" y2="278"/>
+      <line x1="400" y1="522" x2="400" y2="538"/>
+      <line x1="262" y1="400" x2="278" y2="400"/>
+      <line x1="522" y1="400" x2="538" y2="400"/>
+    </g>
+
+    <!-- четырёхлучевая стрелка компаса -->
+    <polygon points="400,286 426,400 400,382 374,400" fill="url(#needleC)" opacity=".95"/>
+    <polygon points="400,514 426,400 400,418 374,400" fill="url(#needleV)" opacity=".9"/>
+    <polygon points="286,400 400,374 382,400 400,426" fill="url(#needleV)" opacity=".8"/>
+    <polygon points="514,400 400,374 418,400 400,426" fill="url(#needleC)" opacity=".85"/>
+    <!-- центральная втулка -->
+    <circle cx="400" cy="400" r="17" fill="#0a111b" stroke="url(#edge)" stroke-width="2.4"/>
+    <circle cx="400" cy="400" r="6" fill="#7ff3ff"/>
+    <!-- блик -->
+    <polygon points="316,266 400,236 350,298" fill="#ffffff" opacity=".2"/>
+  </g>
+
+  <ellipse cx="400" cy="716" rx="236" ry="26" fill="url(#floor)" opacity=".8"/>
+</svg>

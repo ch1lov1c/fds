@@ -1,0 +1,15 @@
+# Дополнительные заголовки СТАТИЧЕСКОЙ версии WEBNICSS на Apache 2.4.
+# На Nginx и в Python этот файл не действует. HTTPS и защита сервера настраиваются отдельно.
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Служебные документы и тесты нельзя отдавать из веб-корня.
+# Не загружайте их на публичный сервер; этот запрет только дополнительная защита Apache.
+<IfModule mod_authz_core.c>
+  <FilesMatch "(?i)(\.(md|txt|csv|disabled|bak|log|sql|zip|py)$|^(integration-prep|release-check|navigation)\.js$)">
+    Require all denied
+  </FilesMatch>
+</IfModule>

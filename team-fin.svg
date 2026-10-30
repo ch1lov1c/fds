@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#101826"/>
+      <stop offset="55%" stop-color="#070b11"/>
+      <stop offset="100%" stop-color="#030406"/>
+    </radialGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b2a3d"/>
+      <stop offset="45%" stop-color="#0d1622"/>
+      <stop offset="100%" stop-color="#060a10"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7ff3ff"/>
+      <stop offset="45%" stop-color="#2fe6ff"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#2fe6ff" stop-opacity=".25"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="floor" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2fe6ff" stop-opacity=".35"/>
+      <stop offset="100%" stop-color="#2fe6ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+
+  <!-- частицы -->
+  <g fill="#7ff3ff" opacity=".75">
+    <circle cx="138" cy="168" r="2.6"/><circle cx="652" cy="132" r="2"/>
+    <circle cx="112" cy="420" r="1.8"/><circle cx="700" cy="408" r="2.4"/>
+    <circle cx="188" cy="628" r="1.8"/><circle cx="618" cy="640" r="2.2"/>
+    <circle cx="392" cy="96" r="1.7"/><circle cx="262" cy="232" r="1.5" opacity=".5"/>
+    <circle cx="556" cy="238" r="1.6" opacity=".55"/>
+  </g>
+
+  <!-- орбитальное кольцо -->
+  <ellipse cx="400" cy="372" rx="262" ry="74" fill="none" stroke="url(#edge)" stroke-width="2.4"
+           opacity=".55" transform="rotate(-16 400 372)" filter="url(#glow)"/>
+  <circle cx="150" cy="436" r="11" fill="url(#violet)" stroke="#7ff3ff" stroke-width="1.4"/>
+  <circle cx="652" cy="308" r="9" fill="url(#violet)" stroke="#7ff3ff" stroke-width="1.3"/>
+
+  <!-- фасетная монета: внешний восьмиугольник -->
+  <g filter="url(#glow)">
+    <polygon points="400,148 578,222 652,400 578,578 400,652 222,578 148,400 222,222"
+             fill="url(#face)" stroke="url(#edge)" stroke-width="3.4" stroke-linejoin="round"/>
+    <!-- грани -->
+    <polygon points="400,148 578,222 400,400" fill="#ffffff" opacity=".05"/>
+    <polygon points="578,222 652,400 400,400" fill="#2fe6ff" opacity=".06"/>
+    <polygon points="652,400 578,578 400,400" fill="#8b5cf6" opacity=".10"/>
+    <polygon points="578,578 400,652 400,400" fill="#ffffff" opacity=".04"/>
+    <polygon points="400,652 222,578 400,400" fill="#2fe6ff" opacity=".05"/>
+    <polygon points="222,578 148,400 400,400" fill="#8b5cf6" opacity=".08"/>
+    <polygon points="148,400 222,222 400,400" fill="#ffffff" opacity=".05"/>
+    <polygon points="222,222 400,148 400,400" fill="#2fe6ff" opacity=".07"/>
+    <!-- внутренний ромб-кристалл -->
+    <polygon points="400,252 548,400 400,548 252,400" fill="none" stroke="url(#edge)" stroke-width="2.6" opacity=".9"/>
+    <polygon points="400,252 548,400 400,400" fill="#2fe6ff" opacity=".10"/>
+    <polygon points="400,252 252,400 400,400" fill="#ffffff" opacity=".06"/>
+    <polygon points="252,400 400,548 400,400" fill="#8b5cf6" opacity=".14"/>
+    <polygon points="548,400 400,548 400,400" fill="#2fe6ff" opacity=".06"/>
+    <!-- центральный блик -->
+    <polygon points="400,322 478,400 400,478 322,400" fill="url(#violet)" opacity=".55"/>
+    <circle cx="400" cy="400" r="14" fill="#7ff3ff" opacity=".85"/>
+    <!-- верхний блик -->
+    <polygon points="318,268 400,252 352,310" fill="#ffffff" opacity=".22"/>
+  </g>
+
+  <!-- отражение на полу -->
+  <ellipse cx="400" cy="718" rx="232" ry="26" fill="url(#floor)" opacity=".8"/>
+</svg>

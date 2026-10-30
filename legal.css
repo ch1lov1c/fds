@@ -1,0 +1,56 @@
+/* Документы WEBNICSS: та же типографика и цвета, без внешних зависимостей. */
+.legal-page{min-height:100vh;background:#0a0a0a}
+.legal-nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}
+.legal-logo{font-family:var(--f-disp);font-weight:900;font-size:18px;letter-spacing:-.02em}
+.legal-logo sup{font-size:9px;vertical-align:top;margin-left:2px}
+.legal-nav-links{display:flex;align-items:center;gap:clamp(14px,3vw,36px);color:#bbb;font-size:13px}
+.legal-nav-links a:hover{color:var(--accent)}
+.legal-main{position:relative;overflow:hidden}
+.legal-hero{padding:clamp(70px,9vw,145px) 0 clamp(42px,5vw,70px);border-bottom:1px solid var(--line)}
+.legal-kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:flex;gap:12px;align-items:center;margin-bottom:30px}
+.legal-kicker::before{content:"";width:26px;height:1px;background:var(--accent)}
+.legal-title{font-family:var(--f-disp);font-size:clamp(37px,6.6vw,94px);font-weight:900;font-stretch:110%;line-height:.97;letter-spacing:-.045em;text-transform:uppercase;max-width:1000px;overflow-wrap:anywhere}
+.legal-title em{font-style:normal;color:var(--accent)}
+.privacy-title em{display:inline-block;font-size:clamp(18px,6.1vw,72px);letter-spacing:-.055em;white-space:nowrap}
+.legal-lead{font-size:clamp(15px,1.5vw,18px);line-height:1.65;color:#aaa;max-width:730px;margin-top:26px}
+.legal-meta{margin-top:27px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#7d8186}
+.legal-layout{display:grid;grid-template-columns:minmax(190px,260px) minmax(0,1fr);gap:clamp(28px,6vw,85px);padding:clamp(42px,6vw,86px) 0 clamp(80px,9vw,140px)}
+.legal-side{align-self:start;position:sticky;top:32px}
+.legal-side-label{display:block;color:#777;font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+.legal-side nav{display:grid;gap:8px}
+.legal-side a{padding:11px 13px;border:1px solid transparent;border-radius:4px;color:#aaa;font-size:13px;line-height:1.4}
+.legal-side a:hover,.legal-side a[aria-current="page"]{color:#fff;border-color:#30363a;background:#111719}
+.legal-side a[aria-current="page"]::before{content:"•";color:var(--accent);margin-right:8px}
+.legal-content{min-width:0}
+.legal-notice{display:flex;gap:15px;align-items:flex-start;margin-bottom:42px;padding:20px 22px;border:1px solid rgba(47,230,255,.26);border-radius:6px;background:rgba(47,230,255,.035);color:#c0d5d8;font-size:14px;line-height:1.65}
+.legal-notice::before{content:"i";flex:none;display:grid;place-items:center;width:20px;height:20px;border:1px solid var(--accent);border-radius:50%;color:var(--accent);font:700 12px Arial,sans-serif;margin-top:2px}
+.legal-block{padding:0 0 30px;margin:0 0 32px;border-bottom:1px solid var(--line)}
+.legal-block:last-child{border-bottom:0}
+.legal-block h2{font-family:var(--f-disp);font-size:clamp(19px,2.2vw,27px);line-height:1.2;letter-spacing:-.025em;margin-bottom:16px}
+.legal-block h2 span{font:500 11px var(--f-body);letter-spacing:.12em;color:var(--accent);margin-right:12px;vertical-align:middle}
+.legal-block p,.legal-block li{font-size:15px;line-height:1.8;color:#c4c6c6;overflow-wrap:anywhere}
+.legal-block p + p,.legal-block p + ul,.legal-block ul + p,.legal-block ul + ul{margin-top:14px}
+.legal-block ul{padding-left:20px;list-style:disc}
+.legal-block li{padding-left:4px;margin:7px 0}
+.legal-block strong{color:#f4f5f5;font-weight:600}
+.legal-block a{color:var(--accent);text-decoration:underline;text-decoration-color:rgba(47,230,255,.4);text-underline-offset:4px}
+.legal-block a:hover{text-decoration-color:currentColor}
+.legal-inline-nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.legal-inline-nav a{font-size:12px;color:#b5c7c9;border:1px solid #2d393d;padding:9px 13px;border-radius:4px}
+.legal-inline-nav a:hover{border-color:var(--accent);color:#fff}
+@media(max-width:800px){
+  .legal-nav{height:auto;min-height:68px;padding:16px 0;flex-wrap:wrap}
+  .legal-nav-links{gap:17px}
+  .legal-layout{grid-template-columns:1fr;gap:28px}
+  .legal-side{position:static}
+  .legal-side nav{display:flex;gap:8px;flex-wrap:wrap}
+  .legal-side a{padding:9px 11px;font-size:12px}
+  .legal-side-label{margin-bottom:10px}
+}
+@media(max-width:430px){
+  .legal-nav-links{width:100%;justify-content:space-between}
+  .legal-hero{padding-top:50px}
+  .legal-title{font-size:clamp(31px,10vw,42px)}
+  .legal-block p,.legal-block li{font-size:14.5px}
+  .legal-notice{padding:16px}
+}

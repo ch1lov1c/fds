@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Проекты — WEBNICSS®</title>
+<meta name="description" content="Живые проекты студии WEBNICSS: сайты тату-студии «сТАТУс» и автосервиса «Феникс», Telegram-бот @webnicss_bot, цифровые продукты и демонстрации автоматизации.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script src="bootstrap.js"></script>
+
+</head>
+<body class="is-loading" data-loader-label="Проекты">
+
+<div class="cursor" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="WEBNICSS на главную">WEBNICSS<sup>®</sup></a>
+  <div class="nav-info">
+    <p>Студия цифрового искусства<br>работаем по всему миру</p>
+    <p>Онлайн-студия без границ<br><span data-clock>00:00:00 · UTC+3</span></p>
+  </div>
+</header>
+
+<button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
+  <span class="menu-ico"><i></i><i></i><i></i></span><span class="menu-label">МЕНЮ</span>
+</button>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-scrim" data-menu-close></div>
+  <aside class="menu-panel">
+    <div class="menu-head">
+      <span><i class="sq"></i>Меню</span>
+      <span><i class="sq"></i>WEBNICSS</span>
+    </div>
+    <nav class="menu-list" id="menuList"></nav>
+  </aside>
+</div>
+
+<!-- загрузчик -->
+<div class="loader" aria-hidden="true">
+  <div class="ld-curtain ld-back"></div>
+  <div class="ld-curtain ld-front"></div>
+  <div class="ld-content">
+    <div class="ld-top">
+      <div class="ld-sphere-wrap">
+        <canvas class="ld-sphere" width="520" height="520"></canvas>
+      </div>
+      <span class="ld-tag">студия цифрового искусства</span>
+    </div>
+    <div class="ld-foot">
+      <div class="ld-name">
+        <span class="ld-name-char">W</span><span class="ld-name-char">E</span><span class="ld-name-char">B</span><span class="ld-name-char">N</span><span class="ld-name-char">I</span><span class="ld-name-char">C</span><span class="ld-name-char">S</span><span class="ld-name-char">S</span>
+      </div>
+      <div class="ld-meta">
+        <span class="ld-page" data-loader-bar>Проекты</span>
+        <span class="ld-line"><b data-loader-line></b></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ============ ШАПКА СТРАНИЦЫ ============ -->
+  <section class="page-head">
+    <div class="wrap">
+      <div class="crumb-row">
+        <nav class="crumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a><i>/</i><span>Проекты</span>
+        </nav>
+        <a class="home-btn" href="index.html" data-cursor>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          На главную
+        </a>
+      </div>
+      <p class="ac-label" data-reveal="soft"><span class="crosshair sm"></span>Наши проекты</p>
+      <h1 class="page-display" data-intro>ЖИВЫЕ<br><em>ПРОДУКТЫ</em></h1>
+      <p class="page-lead" data-reveal="soft">
+        Не макеты из портфолио, а работающие сайты и боты, которые приносят клиентам заявки, продажи
+        и автоматизацию. Каждый проект — от первой идеи до запуска и поддержки.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ КЕЙСЫ ============ -->
+  <section class="page-section">
+    <div class="wrap">
+      <div class="pj-grid" id="projects-list">
+
+        <article class="pj-card st" id="project-status" style="--i:0" data-cursor>
+          <div class="pj-media">
+            <div class="cm cm-status" aria-hidden="true">
+              <div class="cm-bar"><i></i><i></i><i></i><span class="cm-url"></span></div>
+              <div class="cm-body">
+                <div class="cm-hero">
+                  <span class="cm-mask"></span>
+                  <div class="cm-hero-txt"><span class="cm-line acc"></span><span class="cm-line w70"></span><span class="cm-line w50"></span></div>
+                </div>
+                <div class="cm-gal"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="cm-master cm-hide">
+                  <span class="av"></span>
+                  <div class="t"><span class="cm-line w70"></span><span class="cm-line w40"></span></div>
+                  <span class="cm-stat">10+ лет</span>
+                </div>
+              </div>
+            </div>
+            <span class="pj-kind">Сайт под ключ</span>
+          </div>
+          <div class="pj-body">
+            <h2 class="pj-title">Тату-студия «сТАТУс»</h2>
+            <a class="pj-url" href="https://statustattoo.ru" target="_blank" rel="noopener noreferrer">statustattoo.ru ↗</a>
+            <p class="pj-desc">
+              Камерная студия одного мастера в Череповце. Атмосферный тёмный сайт с интро-сценой,
+              галереей работ без ретуши, ценами и записью через ВКонтакте. Стили, отзывы клиентов
+              и маршрут от заявки до сеанса собраны на одной странице.
+            </p>
+            <div class="pj-tags">
+              <span class="pill sm">Лендинг</span><span class="pill sm">Анимации</span>
+              <span class="pill sm">Портфолио</span><span class="pill sm">Запись ВК</span>
+            </div>
+            <div class="pj-foot">
+              <a class="btn-chip" href="https://statustattoo.ru" target="_blank" rel="noopener noreferrer" data-cursor>
+                <span class="btn-label">Открыть сайт</span><span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pj-card st" id="project-phoenix" style="--i:1" data-cursor>
+          <div class="pj-media">
+            <div class="cm cm-phoenix" aria-hidden="true">
+              <div class="cm-bar"><i></i><i></i><i></i><span class="cm-url"></span></div>
+              <div class="cm-body">
+                <div class="cm-car-wrap">
+                  <svg class="cm-car" viewBox="0 0 300 120" fill="none">
+                    <path d="M18 92 L40 62 Q48 50 66 49 L104 46 Q118 30 146 29 L186 29 Q212 30 226 48 L258 55 Q278 59 284 76 L286 92 Q286 98 279 98 L24 98 Q18 98 18 92 Z" fill="rgba(47,110,168,.28)" stroke="rgba(105,180,236,.75)" stroke-width="2"/>
+                    <path d="M112 47 L146 33 L184 33 L214 47 Z" fill="rgba(105,180,236,.22)" stroke="rgba(105,180,236,.5)" stroke-width="1.5"/>
+                    <circle cx="78" cy="98" r="17" fill="#0b0d10" stroke="rgba(105,180,236,.6)" stroke-width="2"/>
+                    <circle cx="232" cy="98" r="17" fill="#0b0d10" stroke="rgba(105,180,236,.6)" stroke-width="2"/>
+                  </svg>
+                  <span class="cm-node" style="left:24%;top:36%"></span>
+                  <span class="cm-node n2" style="left:52%;top:24%"></span>
+                  <span class="cm-node n3" style="left:76%;top:44%"></span>
+                </div>
+                <div class="cm-price">
+                  <div><b>от 1 500 ₽</b><span class="cm-line w70"></span></div>
+                  <div><b>от 3 200 ₽</b><span class="cm-line w70"></span></div>
+                  <div><b>от 900 ₽</b><span class="cm-line w70"></span></div>
+                </div>
+              </div>
+            </div>
+            <span class="pj-kind">Сайт под ключ</span>
+          </div>
+          <div class="pj-body">
+            <h2 class="pj-title">Автосервис «Феникс»</h2>
+            <a class="pj-url" href="https://phoenixauto35.ru" target="_blank" rel="noopener noreferrer">phoenixauto35.ru ↗</a>
+            <p class="pj-desc">
+              Сайт автосервиса с кликабельной схемой автомобиля: клик по узлу открывает работы и цены.
+              Полный прайс из 49 позиций по шести разделам, маршрут визита, отзывы и контакты.
+              Тёмная «гаражная» эстетика с оранжевым акцентом и акцентной типографикой.
+            </p>
+            <div class="pj-tags">
+              <span class="pill sm">Интерактивная схема</span><span class="pill sm">Прайс</span>
+              <span class="pill sm">UX-сценарии</span><span class="pill sm">Адаптив</span>
+            </div>
+            <div class="pj-foot">
+              <a class="btn-chip" href="https://phoenixauto35.ru" target="_blank" rel="noopener noreferrer" data-cursor>
+                <span class="btn-label">Открыть сайт</span><span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pj-card st" id="project-bot" style="--i:2" data-cursor>
+          <div class="pj-media">
+            <div class="cm cm-bot" aria-hidden="true">
+              <div class="cm-bar"><i></i><i></i><i></i><span class="cm-url"></span></div>
+              <div class="cm-body">
+                <div class="cm-phone">
+                  <span class="ph-top"></span>
+                  <span class="cm-bub in"></span>
+                  <span class="cm-bub out"></span>
+                  <span class="cm-bub in sm"></span>
+                  <div class="cm-pay-card"><span class="cm-line acc"></span><span class="cm-line w50"></span></div>
+                  <span class="cm-input cm-hide"></span>
+                </div>
+              </div>
+            </div>
+            <span class="pj-kind">Telegram-бот</span>
+          </div>
+          <div class="pj-body">
+            <h2 class="pj-title">Telegram-бот @webnicss_bot</h2>
+            <a class="pj-url" href="https://t.me/webnicss_bot" target="_blank" rel="noopener noreferrer">t.me/webnicss_bot ↗</a>
+            <p class="pj-desc">
+              Пример Telegram-бота студии: интерфейс и сценарии взаимодействия с пользователями.
+              Актуальные возможности уточняйте в боте или у менеджера.
+            </p>
+            <div class="pj-tags">
+              <span class="pill sm">Интерфейс бота</span><span class="pill sm">Telegram</span>
+              <span class="pill sm">Условия по запросу</span><span class="pill sm">Связь с менеджером</span>
+            </div>
+            <div class="pj-foot">
+              <a class="btn-chip" href="https://t.me/webnicss_bot" target="_blank" rel="noopener noreferrer" data-cursor>
+                <span class="btn-label">Открыть бота</span><span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pj-card st" id="project-automation" style="--i:3" data-cursor>
+          <div class="pj-media">
+            <div class="cm cm-broadcast" aria-hidden="true">
+              <div class="cm-bar"><i></i><i></i><i></i><span class="cm-url"></span></div>
+              <div class="cm-body">
+                <div class="cm-kpis">
+                  <div class="cm-kpi"><b>—</b><span class="cm-line w50"></span></div>
+                  <div class="cm-kpi"><b>—</b><span class="cm-line w50"></span></div>
+                  <div class="cm-kpi"><b>—</b><span class="cm-line w50"></span></div>
+                </div>
+                <div class="cm-chart"><i style="height:34%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:86%"></i><i style="height:100%"></i></div>
+                <div class="cm-rows cm-hide"><span class="cm-rrow"></span><span class="cm-rrow"></span><span class="cm-rrow"></span></div>
+              </div>
+            </div>
+            <span class="pj-kind">Концепт · автоматизация</span>
+          </div>
+          <div class="pj-body">
+            <h2 class="pj-title">Концепт: автоматизация заказов</h2>
+            <span class="pj-url">демонстрационный макет</span>
+            <p class="pj-desc">
+              Демонстрационный макет системы для управления заказами и уведомлениями.
+              Состав и возможности реальной интеграции определяются под задачу клиента.
+            </p>
+            <div class="pj-tags">
+              <span class="pill sm">Автовыдача</span><span class="pill sm">Вебхуки оплаты</span>
+              <span class="pill sm">Уведомления</span><span class="pill sm">Аналитика</span>
+            </div>
+            <div class="pj-foot">
+              <a class="btn-chip" href="index.html#contact" data-cursor>
+                <span class="btn-label">Обсудить такой проект</span><span class="btn-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ИНТЕРАКТИВНАЯ 3D-МОДЕЛЬ LUXURY WATCH ============ -->
+  <section class="model-lab">
+    <div class="wrap">
+      <p class="ac-label" data-reveal="soft"><span class="crosshair sm"></span>3D-моделирование — живое демо</p>
+      <h2 class="section-display" data-reveal="lit">LUXURY <em>WATCH</em></h2>
+      <p class="model-hint" data-reveal="soft">Фотореалистичная 3D-визуализация: полированный металл, рифлёный безель, сапфировое стекло и студийный свет с циан-фиолетовыми бликами. Перетаскивайте мышью или пальцем — модель вращается, колесо меняет масштаб</p>
+      <div class="model-stage watch-stage st" data-watch>
+        <span class="model-name">Luxury Watch · интерактивная 3D-модель</span>
+        <div class="watch-canvas" id="watchCanvas" role="img" aria-label="Интерактивная 3D-модель люксовых наручных часов"></div>
+        <img class="watch-fallback" src="work-watch-poster.jpg" alt="Люксовые часы — сталь и золото, студийный свет с циан-фиолетовыми бликами" loading="lazy">
+        <span class="watch-loader">Рендер сцены…</span>
+        <span class="watch-hint">Перетащите, чтобы повернуть</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact" data-nav-compact>
+    <div class="mosaic" data-mosaic aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <p class="ac-label"><span class="crosshair sm"></span>Контакт · © 2026</p>
+      <h2 class="ft-lines">
+        <span class="ft-line"><span class="display">ДАВАЙТЕ</span></span>
+        <span class="ft-line"><span class="display">СДЕЛАЕМ</span></span>
+        <span class="ft-line"><span class="display accent-text">ВАШ ПРОДУКТ</span></span>
+      </h2>
+      <div class="ft-cta">
+        <a href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer" class="btn-chip big" data-cursor>
+          <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="tel:+79608714367" class="btn-chip big ghost" data-cursor>
+          <span class="btn-label">Телефон менеджера</span><span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="ft-grid">
+        <nav class="ft-col" aria-label="Навигация в подвале">
+          <span class="ft-h"><i class="sq"></i>Навигация</span>
+          <a class="ul" href="index.html">Главная</a>
+          <a class="ul" href="projects.html#projects-list">Проекты</a>
+          <a class="ul" href="service.html#sites">Услуги</a>
+        </nav>
+        <div class="ft-col">
+          <span class="ft-h"><i class="sq"></i>Контакты</span>
+          <span class="ft-caption">Телефон менеджера</span>
+          <a class="ul ft-contact-value" href="tel:+79608714367">+7 (960) 871-43-67</a>
+          <span class="ft-caption">Электронная почта</span>
+          <a class="ul ft-contact-value" href="mailto:vladkarpovic21@gmail.com">vladkarpovic21@gmail.com</a>
+        </div>
+        <nav class="ft-col" aria-label="Социальные сети">
+          <span class="ft-h"><i class="sq"></i>Мы в сети</span>
+          <a class="ft-social" href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Менеджер · @webnicssmng</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://t.me/webnicss_bot" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Бот · @webnicss_bot</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://t.me/webnicss" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Канал · @webnicss</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://t.me/webnicss_reviews" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Отзывы · @webnicss_reviews</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="ft-social" href="https://vk.ru/webnicss" target="_blank" rel="noopener noreferrer">
+            <span class="ft-social-icon vk" aria-hidden="true">VK</span><span class="ft-social-text"><b>ВКонтакте</b><small>Страница · vk.ru/webnicss</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+        <nav class="ft-col" aria-label="Документы и безопасность">
+          <span class="ft-h"><i class="sq"></i>Информация</span>
+          <a class="ul" href="privacy.html">Политика конфиденциальности</a>
+          <a class="ul" href="terms.html">Условия заказа и возврата</a>
+          <a class="ul" href="security.html">Безопасность</a>
+          <span class="ft-note">Онлайн-студия<br>На связи в Telegram и ВКонтакте</span>
+        </nav>
+      </div>
+      <div class="ft-bottom">
+        <span>© 2026 WEBNICSS® STUDIO</span>
+        <button class="to-top" data-cursor>Наверх ↑</button>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="gsap.min.js"></script>
+<script src="ScrollTrigger.min.js"></script>
+<script src="lenis.min.js"></script>
+<script defer src="watch3d.bundle.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
