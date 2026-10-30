@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-KwMnn3h3Tsu9cZ6+BFNrQicoCMDqHKK8ZdDXeEwzhkk=' 'sha256-y7Ond1eZbDAilW/ev3APy75XbGByKMIYK1hPLWtoMm8='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-RiUuaUNuLqbTP7u1E4eh4HjfdR19B7vFSq3z3vR8was=' 'sha256-y7Ond1eZbDAilW/ev3APy75XbGByKMIYK1hPLWtoMm8='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>WEBNICSS® — студия цифровых продуктов</title>
@@ -1595,6 +1595,29 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   @media(max-height:500px) and (min-width:561px){.hero{min-height:100svh}}
 }
 
+/* Связь: ВКонтакте непосредственно под Telegram во всех блоках обращений. */
+.contact-actions{display:grid;gap:10px;min-width:0}
+.contact-actions .btn-chip{width:100%;justify-content:space-between}
+.contact-actions .btn-label{margin-right:10px}
+.contact-actions .btn-arrow{flex:0 0 auto}
+.ft-cta{align-items:flex-start}
+.ft-cta .contact-actions{width:min(100%,300px)}
+.sv-type-foot .contact-actions{width:min(100%,218px)}
+.sv-type-foot .contact-actions .btn-chip{height:46px;padding-left:16px;font-size:14px}
+.sv-type-foot .contact-actions .btn-label{font-size:14px;color:inherit;letter-spacing:-.02em;text-transform:none}
+.sv-type-foot .contact-actions .btn-arrow{width:38px;height:38px;font-size:16px;color:var(--accent);letter-spacing:0;text-transform:none}
+.sv-type-foot .contact-actions .btn-chip:hover .btn-arrow{color:#000}
+.sv-cta .contact-actions{width:min(100%,300px)}
+.pj-foot .contact-actions{width:min(100%,270px)}
+@media(max-width:560px){
+  .ft-cta .contact-actions,.sv-type-foot .contact-actions,.pj-foot .contact-actions{width:100%}
+}
+.workspace-external-note{position:fixed;z-index:9999;bottom:18px;left:50%;transform:translateX(-50%);
+  width:min(92vw,440px);padding:13px 16px;background:#111b1d;color:#f5f8f8;
+  border:1px solid #2fe6ff;border-radius:6px;font:14px/1.4 Arial,sans-serif;
+  text-align:center;box-shadow:0 10px 35px #000a;pointer-events:none}
+.workspace-external-note[hidden]{display:none}
+
 </style>
 <!-- WORKSPACE-STYLE-END -->
 <link rel="stylesheet" href="fonts.css">
@@ -1837,9 +1860,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         <span class="ft-line"><span class="display accent-text">ВАШ ПРОДУКТ</span></span>
       </h2>
       <div class="ft-cta">
-        <a href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer" class="btn-chip big" data-cursor>
-          <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
-        </a>
+        <div class="contact-actions">
+          <a href="https://t.me/webnicssmng?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D1%81%20WEBNICSS.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D1%81%20%D1%87%D0%B5%D0%B3%D0%BE%20%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C." target="_blank" rel="noopener noreferrer" class="btn-chip big" data-cursor>
+            <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="https://vk.me/webnicss" target="_blank" rel="noopener noreferrer" class="btn-chip big ghost" data-cursor>
+            <span class="btn-label">Написать в ВК</span><span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
         <a href="tel:+79608714367" class="btn-chip big ghost" data-cursor>
           <span class="btn-label">Телефон менеджера</span><span class="btn-arrow" aria-hidden="true">↗</span>
         </a>
@@ -1860,7 +1888,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </div>
         <nav class="ft-col" aria-label="Социальные сети">
           <span class="ft-h"><i class="sq"></i>Мы в сети</span>
-          <a class="ft-social" href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer">
+          <a class="ft-social" href="https://t.me/webnicssmng?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D1%81%20WEBNICSS.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D1%81%20%D1%87%D0%B5%D0%B3%D0%BE%20%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C." target="_blank" rel="noopener noreferrer">
             <span class="ft-social-icon" aria-hidden="true">TG</span><span class="ft-social-text"><b>Telegram</b><small>Менеджер · @webnicssmng</small></span><span class="ft-social-arrow" aria-hidden="true">↗</span>
           </a>
           <a class="ft-social" href="https://t.me/webnicss_bot" target="_blank" rel="noopener noreferrer">
@@ -1949,6 +1977,29 @@ window.__wnBoot = true;
 
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+// Файловый просмотрщик Workspace изолирует iframe и блокирует внешние ссылки.
+// В обычном браузере и живом предпросмотре этот обработчик не включается.
+if (window.__wnWorkspaceImages && window.self !== window.top) {
+  let externalNoteTimer;
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const a = event.target.closest('a[href]');
+    if (!a || !/^(?:https?:|mailto:|tel:)/i.test(a.getAttribute('href') || '')) return;
+    event.preventDefault();
+    let note = $('#workspace-external-note');
+    if (!note) {
+      note = document.createElement('div');
+      note.id = 'workspace-external-note';
+      note.className = 'workspace-external-note';
+      note.setAttribute('role', 'status');
+      note.textContent = 'Для открытия ссылки используйте живой предпросмотр сайта или обычный браузер.';
+      document.body.appendChild(note);
+    }
+    note.hidden = false;
+    clearTimeout(externalNoteTimer);
+    externalNoteTimer = setTimeout(() => { note.hidden = true; }, 5000);
+  }, true);
+}
 // Доступ к хранилищу браузера может быть запрещён. Это не должно ломать витрину.
 const storageGet = (kind, key) => { try { return window[kind].getItem(key); } catch (_) { return null; } };
 const storageSet = (kind, key, value) => { try { window[kind].setItem(key, value); return true; } catch (_) { return false; } };
@@ -1957,6 +2008,9 @@ const storageRemove = (kind, key) => { try { window[kind].removeItem(key); } cat
 storageRemove('localStorage', 'wn_cart');
 storageRemove('sessionStorage', 'wn_cart_review');
 const money = n => n.toLocaleString('ru-RU') + ' ₽';
+// Telegram открывает черновик: посетитель сам решает, отправлять ли сообщение.
+const telegramContact = text => `https://t.me/webnicssmng?text=${encodeURIComponent(text)}`;
+const vkContact = 'https://vk.me/webnicss';
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasGsap = !!(window.gsap && window.ScrollTrigger && window.Lenis);
@@ -2214,6 +2268,10 @@ if ($('#svRoot')) {
     if (idx < 0) return;
     const [title, tags] = SERVICES[idx];
     const block = SERVICE_TYPES[id];
+    const sectionMessage = `Здравствуйте! Меня интересует направление «${title}». Хочу обсудить задачу с WEBNICSS.`;
+    // В подвале страницы сохраняем контекст выбранного направления, даже
+    // когда посетитель переключает вкладки или пользуется историей браузера.
+    $$('[data-service-contact]').forEach(link => link.setAttribute('href', telegramContact(sectionMessage)));
     $$('#svPills .pill').forEach((p, i) => p.classList.toggle('active', SERVICE_IDS[i] === id));
     // Показываем активную вкладку целиком, не сдвигая всю страницу.
     revealActiveServicePill();
@@ -2233,15 +2291,28 @@ if ($('#svRoot')) {
             <ul class="sv-type-feats">${t.f.map(x => `<li>${x}</li>`).join('')}</ul>
             <div class="sv-type-foot">
               <div><b>${t.p === null ? 'по запросу' : (t.from ? 'от ' + money(t.p) : money(t.p))}</b><span>${t.t}</span></div>
-              <a class="btn-chip" href="index.html#contact" data-cursor><span class="btn-label">Обсудить</span><span class="btn-arrow">→</span></a>
+              <div class="contact-actions">
+                <a class="btn-chip" href="${telegramContact(`Здравствуйте! Интересует услуга «${t.n}». Хочу обсудить детали с WEBNICSS.`)}" target="_blank" rel="noopener noreferrer" data-cursor aria-label="Написать в Telegram об услуге ${t.n}">
+                  <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="btn-chip ghost" href="${vkContact}" target="_blank" rel="noopener noreferrer" data-cursor aria-label="Написать в ВК об услуге ${t.n}">
+                  <span class="btn-label">Написать в ВК</span><span class="btn-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
           </article>`).join('')}
       </div>
       <div class="sv-cta st">
         <h2>Не нашли нужный формат?</h2>
         <p>Обсудим сочетание сайта, бота, дизайна и автоматизации для вашего проекта.</p>
-        <a class="btn-chip big" href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer" data-cursor>
-          <span class="btn-label">Написать в Telegram</span><span class="btn-arrow">✦</span></a>
+        <div class="contact-actions">
+          <a class="btn-chip big" href="${telegramContact(sectionMessage)}" target="_blank" rel="noopener noreferrer" data-cursor>
+            <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="btn-chip big ghost" href="${vkContact}" target="_blank" rel="noopener noreferrer" data-cursor>
+            <span class="btn-label">Написать в ВК</span><span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>`;
     document.title = `${title} — WEBNICSS®`;
     // Динамически созданные карточки не должны оставаться скрытыми без GSAP.

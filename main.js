@@ -7,6 +7,29 @@ window.__wnBoot = true;
 
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+// Файловый просмотрщик Workspace изолирует iframe и блокирует внешние ссылки.
+// В обычном браузере и живом предпросмотре этот обработчик не включается.
+if (window.__wnWorkspaceImages && window.self !== window.top) {
+  let externalNoteTimer;
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const a = event.target.closest('a[href]');
+    if (!a || !/^(?:https?:|mailto:|tel:)/i.test(a.getAttribute('href') || '')) return;
+    event.preventDefault();
+    let note = $('#workspace-external-note');
+    if (!note) {
+      note = document.createElement('div');
+      note.id = 'workspace-external-note';
+      note.className = 'workspace-external-note';
+      note.setAttribute('role', 'status');
+      note.textContent = 'Для открытия ссылки используйте живой предпросмотр сайта или обычный браузер.';
+      document.body.appendChild(note);
+    }
+    note.hidden = false;
+    clearTimeout(externalNoteTimer);
+    externalNoteTimer = setTimeout(() => { note.hidden = true; }, 5000);
+  }, true);
+}
 // Доступ к хранилищу браузера может быть запрещён. Это не должно ломать витрину.
 const storageGet = (kind, key) => { try { return window[kind].getItem(key); } catch (_) { return null; } };
 const storageSet = (kind, key, value) => { try { window[kind].setItem(key, value); return true; } catch (_) { return false; } };
@@ -15,6 +38,9 @@ const storageRemove = (kind, key) => { try { window[kind].removeItem(key); } cat
 storageRemove('localStorage', 'wn_cart');
 storageRemove('sessionStorage', 'wn_cart_review');
 const money = n => n.toLocaleString('ru-RU') + ' ₽';
+// Telegram открывает черновик: посетитель сам решает, отправлять ли сообщение.
+const telegramContact = text => `https://t.me/webnicssmng?text=${encodeURIComponent(text)}`;
+const vkContact = 'https://vk.me/webnicss';
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasGsap = !!(window.gsap && window.ScrollTrigger && window.Lenis);
@@ -272,6 +298,10 @@ if ($('#svRoot')) {
     if (idx < 0) return;
     const [title, tags] = SERVICES[idx];
     const block = SERVICE_TYPES[id];
+    const sectionMessage = `Здравствуйте! Меня интересует направление «${title}». Хочу обсудить задачу с WEBNICSS.`;
+    // В подвале страницы сохраняем контекст выбранного направления, даже
+    // когда посетитель переключает вкладки или пользуется историей браузера.
+    $$('[data-service-contact]').forEach(link => link.setAttribute('href', telegramContact(sectionMessage)));
     $$('#svPills .pill').forEach((p, i) => p.classList.toggle('active', SERVICE_IDS[i] === id));
     // Показываем активную вкладку целиком, не сдвигая всю страницу.
     revealActiveServicePill();
@@ -291,15 +321,28 @@ if ($('#svRoot')) {
             <ul class="sv-type-feats">${t.f.map(x => `<li>${x}</li>`).join('')}</ul>
             <div class="sv-type-foot">
               <div><b>${t.p === null ? 'по запросу' : (t.from ? 'от ' + money(t.p) : money(t.p))}</b><span>${t.t}</span></div>
-              <a class="btn-chip" href="index.html#contact" data-cursor><span class="btn-label">Обсудить</span><span class="btn-arrow">→</span></a>
+              <div class="contact-actions">
+                <a class="btn-chip" href="${telegramContact(`Здравствуйте! Интересует услуга «${t.n}». Хочу обсудить детали с WEBNICSS.`)}" target="_blank" rel="noopener noreferrer" data-cursor aria-label="Написать в Telegram об услуге ${t.n}">
+                  <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="btn-chip ghost" href="${vkContact}" target="_blank" rel="noopener noreferrer" data-cursor aria-label="Написать в ВК об услуге ${t.n}">
+                  <span class="btn-label">Написать в ВК</span><span class="btn-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
           </article>`).join('')}
       </div>
       <div class="sv-cta st">
         <h2>Не нашли нужный формат?</h2>
         <p>Обсудим сочетание сайта, бота, дизайна и автоматизации для вашего проекта.</p>
-        <a class="btn-chip big" href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer" data-cursor>
-          <span class="btn-label">Написать в Telegram</span><span class="btn-arrow">✦</span></a>
+        <div class="contact-actions">
+          <a class="btn-chip big" href="${telegramContact(sectionMessage)}" target="_blank" rel="noopener noreferrer" data-cursor>
+            <span class="btn-label">Написать в Telegram</span><span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="btn-chip big ghost" href="${vkContact}" target="_blank" rel="noopener noreferrer" data-cursor>
+            <span class="btn-label">Написать в ВК</span><span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>`;
     document.title = `${title} — WEBNICSS®`;
     // Динамически созданные карточки не должны оставаться скрытыми без GSAP.

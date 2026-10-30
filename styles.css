@@ -1515,3 +1515,26 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 @supports (height:100svh){
   @media(max-height:500px) and (min-width:561px){.hero{min-height:100svh}}
 }
+
+/* Связь: ВКонтакте непосредственно под Telegram во всех блоках обращений. */
+.contact-actions{display:grid;gap:10px;min-width:0}
+.contact-actions .btn-chip{width:100%;justify-content:space-between}
+.contact-actions .btn-label{margin-right:10px}
+.contact-actions .btn-arrow{flex:0 0 auto}
+.ft-cta{align-items:flex-start}
+.ft-cta .contact-actions{width:min(100%,300px)}
+.sv-type-foot .contact-actions{width:min(100%,218px)}
+.sv-type-foot .contact-actions .btn-chip{height:46px;padding-left:16px;font-size:14px}
+.sv-type-foot .contact-actions .btn-label{font-size:14px;color:inherit;letter-spacing:-.02em;text-transform:none}
+.sv-type-foot .contact-actions .btn-arrow{width:38px;height:38px;font-size:16px;color:var(--accent);letter-spacing:0;text-transform:none}
+.sv-type-foot .contact-actions .btn-chip:hover .btn-arrow{color:#000}
+.sv-cta .contact-actions{width:min(100%,300px)}
+.pj-foot .contact-actions{width:min(100%,270px)}
+@media(max-width:560px){
+  .ft-cta .contact-actions,.sv-type-foot .contact-actions,.pj-foot .contact-actions{width:100%}
+}
+.workspace-external-note{position:fixed;z-index:9999;bottom:18px;left:50%;transform:translateX(-50%);
+  width:min(92vw,440px);padding:13px 16px;background:#111b1d;color:#f5f8f8;
+  border:1px solid #2fe6ff;border-radius:6px;font:14px/1.4 Arial,sans-serif;
+  text-align:center;box-shadow:0 10px 35px #000a;pointer-events:none}
+.workspace-external-note[hidden]{display:none}
