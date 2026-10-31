@@ -134,10 +134,10 @@ const SERVICE_TYPES = {
   sites: {
     lead: 'От одностраничного лендинга до магазина: авторский дизайн, адаптив, скорость и заявки, которые не теряются.',
     types: [
-      { n: 'Лендинг под ключ', d: 'Одностраничный сайт с сильным оффером, блоком услуг и портфолио. Заявки падают в Telegram и на почту.', p: 24900, from: true, t: 'от 7 дней', f: ['Дизайн с нуля, без шаблонов', 'Адаптивная вёрстка и оптимизация', 'Домен и SSL подключаем мы'] },
-      { n: 'Сайт с заявками в CRM', d: 'Многостраничный сайт компании: услуги, кейсы, формы. Заявки сразу в CRM и Telegram с защитой от спама.', p: 49900, from: true, t: 'от 10 дней', f: ['Интеграция с CRM и Telegram', 'Антиспам и валидация', 'Метрика и цели на старте'] },
-      { n: 'Сайт-калькулятор', d: 'Клиент собирает параметры заказа и сразу видит смету. Расчёт уходит вам в чат и клиенту на почту в PDF.', p: 39900, from: true, t: 'от 16 дней', f: ['Любые формулы и параметры', 'Смета в PDF на почту', 'Экспорт расчёта в CRM'] },
-      { n: 'Интернет-магазин', d: 'Каталог, оформление заказа, личный кабинет и учёт — для цифровых или физических товаров.', p: 69900, from: true, t: 'от 21 дня', f: ['Способ оплаты по согласованию', 'Личный кабинет и заказы', 'Синхронизация остатков'] },
+      { n: 'Лендинг под ключ', d: 'Одностраничный сайт с блоком услуг, портфолио и формой заявки. Канал доставки обращений согласуем под проект.', p: 45000, from: true, t: 'от 7 дней', f: ['Дизайн по согласованной структуре', 'Адаптивная вёрстка и оптимизация', 'Домен и SSL при наличии доступа'] },
+      { n: 'Сайт с заявками в CRM', d: 'Сайт компании с услугами, кейсами и формой. Состав страниц и подключение одной CRM обсуждаем до старта.', p: 65000, from: true, t: 'от 10 дней', f: ['Страницы по согласованной структуре', 'Подключение одной CRM', 'Антиспам и валидация формы'] },
+      { n: 'Сайт-калькулятор', d: 'Сайт с расчётом стоимости по согласованной модели. Способ передачи результата и дополнительные интеграции обсуждаем отдельно.', p: 85000, from: true, t: 'от 16 дней', f: ['Формула расчёта по техническому заданию', 'Адаптивный интерфейс', 'Отправка результата по согласованию'] },
+      { n: 'Интернет-магазин', d: 'Базовый каталог и оформление заказов. Состав оплаты, кабинета и дополнительных интеграций согласуем до начала работ.', p: 120000, from: true, t: 'от 21 дня', f: ['Каталог и оформление заказа', 'Способ оплаты по согласованию', 'Дополнительные интеграции отдельно'] },
       { n: 'Web3 / Crypto-проект', d: 'Сайт с подключением кошельков, минтом, дашбордом токена и интеграцией TON/ETH. С аудитом логики.', p: null, t: 'после брифа', f: ['TON Connect и EVM-кошельки', 'Работа с контрактами', 'Аудит и тесты перед релизом'] },
     ],
   },
@@ -402,12 +402,26 @@ if ($('#svRoot')) {
     select.value = requested;
   }
 
-  const publicId = (form.dataset.zapnotyId || '').trim();
+  // Допускаем публичный ID ИЛИ полный URL, который выдаёт Zapnoty.
+  // Отправляем только на жёстко заданный домен: посторонние URL, параметры,
+  // учётные данные в адресе и секретные API-ключи никогда не принимаем.
+  function publicFormId(value) {
+    const raw = (value || '').trim();
+    const isPublicId = id => /^[A-Za-z0-9_-]{3,100}$/.test(id) && !/^zn_live_/i.test(id);
+    if (isPublicId(raw)) return raw;
+    try {
+      const url = new URL(raw);
+      if (url.protocol !== 'https:' || url.hostname !== 'api.zapnoty.com' ||
+          url.port || url.username || url.password || url.search || url.hash) return '';
+      const match = /^\/f\/([A-Za-z0-9_-]{3,100})\/?$/.exec(url.pathname);
+      return match && isPublicId(match[1]) ? match[1] : '';
+    } catch (_) { return ''; }
+  }
+  const publicId = publicFormId(form.dataset.zapnotyId);
   const honeyName = (form.dataset.honeypotName || '_honey').trim();
-  const validId = /^[A-Za-z0-9_-]{3,100}$/.test(publicId);
   const validHoney = /^_[A-Za-z0-9_]{2,60}$/.test(honeyName) && !['_request_id', '_submit_time'].includes(honeyName);
   const secureContext = location.protocol === 'https:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  if (!validId || !validHoney || !secureContext) {
+  if (!publicId || !validHoney || !secureContext) {
     fields.disabled = true;
     return;
   }
@@ -823,12 +837,23 @@ if (hasGsap) {
 
   /* загрузчик → интро */
   gsap.set('[data-intro]', { y: -160, opacity: 0 });
+  const finishIntro = () => {
+    document.body.classList.remove('is-loading');
+    lenis.start();
+    ScrollTrigger.refresh();
+    deepLink();
+  };
   if (loaderSeen) {
-    /* повторный визит: прелоадер уже скрыт, интро без ожидания */
+    /* Повторный визит: не задерживаем переход к якорю анимацией для reduced motion. */
     gsap.set('.loader', { display: 'none' });
     bootGlitch();
-    gsap.to('[data-intro]', { y: 0, opacity: 1, duration: .9, ease: 'expo.out', stagger: .04,
-      onComplete: () => { document.body.classList.remove('is-loading'); lenis.start(); ScrollTrigger.refresh(); deepLink(); } });
+    if (reduce) {
+      gsap.set('[data-intro]', { y: 0, opacity: 1 });
+      finishIntro();
+    } else {
+      gsap.to('[data-intro]', { y: 0, opacity: 1, duration: .9, ease: 'expo.out', stagger: .04,
+        onComplete: finishIntro });
+    }
   }
   const loader = () => new Promise(done => {
     if (loaderSeen) return done();
@@ -893,9 +918,13 @@ if (hasGsap) {
   loader().then(() => {
     if (loaderSeen) return; /* интро уже запущено выше */
     bootGlitch();
-    gsap.to('[data-intro]', { y: 0, opacity: 1, duration: 1.4, ease: 'expo.out', stagger: .05,
-      delay: reduce ? 0 : .35,
-      onComplete: () => { document.body.classList.remove('is-loading'); lenis.start(); ScrollTrigger.refresh(); deepLink(); } });
+    if (reduce) {
+      gsap.set('[data-intro]', { y: 0, opacity: 1 });
+      finishIntro();
+    } else {
+      gsap.to('[data-intro]', { y: 0, opacity: 1, duration: 1.4, ease: 'expo.out', stagger: .05,
+        delay: .35, onComplete: finishIntro });
+    }
   });
   $('.to-top')?.addEventListener('click', () => lenis.scrollTo(0, { duration: 2.6 }));
 } else {

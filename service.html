@@ -7,9 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Услуги — WEBNICSS®</title>
 <meta name="description" content="Услуги студии WEBNICSS: сайты, Telegram-боты, дизайн, 3D, видео и автоматизация.">
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" sizes="128x128" href="favicon.png?v=20261031">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=20261031">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=20261031">
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20261031">
 <script src="bootstrap.js"></script>
 
 </head>
@@ -152,6 +154,7 @@
           <a class="ul" href="consent.html">Согласие на обработку данных</a>
           <a class="ul" href="terms.html">Условия заказа и возврата</a>
           <a class="ul" href="security.html">Безопасность</a>
+          <a class="ul" href="cookies.html">Cookie и хранилище</a>
           <span class="ft-note">Онлайн-студия<br>На связи в Telegram и ВКонтакте</span>
         </nav>
       </div>
@@ -167,6 +170,13 @@
 <script src="gsap.min.js"></script>
 <script src="ScrollTrigger.min.js"></script>
 <script src="lenis.min.js"></script>
-<script src="main.js"></script>
+<script src="main.js?v=20261031"></script>
+<aside id="cookieNotice" class="cookie-notice" role="region" aria-labelledby="cookieNoticeTitle" hidden>
+  <div class="cookie-notice__eyebrow">WEBNICSS · приватность</div>
+  <h2 class="cookie-notice__title" id="cookieNoticeTitle">Cookie и данные браузера</h2>
+  <p class="cookie-notice__text">Для работы интерфейса и показа этого уведомления используется техническое хранилище. Аналитические и рекламные cookie сейчас не подключены.</p>
+  <div class="cookie-notice__actions"><a class="cookie-notice__link" href="cookies.html">Подробнее</a><button class="cookie-notice__button" id="cookieNoticeDismiss" type="button">Понятно</button></div>
+</aside>
+<script src="cookie-notice.js"></script>
 </body>
 </html>
