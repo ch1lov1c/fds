@@ -113,6 +113,74 @@ async function main() {
   await page.setViewportSize({ width:1280, height:800 });
   console.log('✓ Девять услуг, прямые ссылки, видимый фильтр и история браузера');
 
+  // Each service has Telegram, VK, and a deep link preselecting that exact service.
+  let inquiryLinks = 0;
+  for (const id of ['sites','miniapp','bots','ai','design','model3d','video','tg','integrations']) {
+    await page.goto(abs(`service.html#${id}`), {waitUntil:'domcontentloaded'});
+    await page.waitForSelector(`#svRoot .sv-hero[id="${id}"]`);
+    const cards = await page.locator('#svRoot .sv-type').evaluateAll(els => els.map(card => ({
+      name:card.querySelector('h3').textContent.trim(),
+      hrefs:[...card.querySelectorAll('.contact-actions a')].map(a => a.href),
+    })));
+    cards.forEach((card, i) => {
+      assert.equal(card.hrefs.length, 3, card.name);
+      assert.ok(new URL(card.hrefs[0]).searchParams.get('text').includes(card.name), card.name);
+      assert.equal(card.hrefs[1], 'https://vk.me/webnicss');
+      const link = new URL(card.hrefs[2]);
+      assert.equal(link.searchParams.get('service'), `${id}.${i}`);
+      assert.equal(link.hash, '#project-form');
+      inquiryLinks++;
+    });
+  }
+  assert.equal(inquiryLinks, 35);
+  await page.goto(abs('index.html?service=design.1#project-form'), {waitUntil:'domcontentloaded'});
+  assert.equal(await page.locator('#projectService').inputValue(), 'design.1');
+  if (!(await page.locator('#projectInquiry').getAttribute('data-zapnoty-id'))) {
+    assert.equal(await page.locator('#projectSend').isDisabled(), true);
+    assert.match(await page.locator('#projectFormAvailability').innerText(), /недоступна/i);
+  }
+  console.log('✓ 35 услуг: три кнопки и предвыбор услуги; отключение при отсутствии ID');
+
+  // Mock the public endpoint; never call the real service or send personal data.
+  const formMock = await browser.newContext({reducedMotion:'reduce'});
+  await formMock.addInitScript(() => sessionStorage.setItem('wn_loader','1'));
+  await formMock.route(/\/index\.html(?:\?.*)?$/, async route => {
+    const response = await route.fetch();
+    let html = await response.text();
+    html = html.replace(/data-zapnoty-id="[^"]*"\s+data-honeypot-name="[^"]*"/, 'data-zapnoty-id="form_test123" data-honeypot-name="_hp_mock"');
+    await route.fulfill({response, body:html});
+  });
+  let requests = [], failFirst = true;
+  await formMock.route('https://api.zapnoty.com/f/form_test123', async route => {
+    const req = route.request();
+    if (req.method() === 'OPTIONS') return route.fulfill({status:204, headers:{'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type'}});
+    requests.push(req.postDataJSON());
+    await route.fulfill({status:failFirst ? 503 : 200, headers:{'access-control-allow-origin':'*','content-type':'application/json'}, body:JSON.stringify({ok:!failFirst})});
+    failFirst = false;
+  });
+  const inquiry = await formMock.newPage();
+  await inquiry.goto(abs('index.html?service=sites.0#project-form'), {waitUntil:'domcontentloaded'});
+  assert.equal(await inquiry.locator('#projectSend').isDisabled(), false);
+  await inquiry.locator('#projectName').fill('Тест');
+  await inquiry.locator('#projectContact').fill('@test_contact');
+  await inquiry.locator('#projectMessage').fill('Тестовое описание проекта.');
+  await inquiry.locator('#projectSend').click();
+  assert.equal(requests.length,0,'Без согласия запрос не отправляется');
+  await inquiry.locator('[name="consent"]').check();
+  await inquiry.locator('#projectSend').click();
+  await inquiry.locator('#projectFormStatus').filter({hasText:'Не удалось'}).waitFor({state:'visible'});
+  assert.equal(requests.length,1);
+  assert.equal(requests[0].subject,'Лендинг под ключ');
+  assert.equal(requests[0]._hp_mock,'');
+  assert.equal(await inquiry.locator('#projectName').inputValue(),'Тест');
+  await inquiry.locator('#projectSend').click();
+  await inquiry.locator('#projectFormStatus').filter({hasText:'Запрос отправлен'}).waitFor({state:'visible'});
+  assert.equal(requests.length,2);
+  assert.equal(requests[0]._request_id, requests[1]._request_id);
+  assert.equal(await inquiry.locator('#projectName').inputValue(),'');
+  await formMock.close();
+  console.log('✓ Форма: согласие, ошибка и сохранение текста, повтор с тем же ID (имитация API)');
+
   // Project cards and previous bookmarked URLs.
   for (const id of ['project-status','project-phoenix','project-bot','project-automation']) {
     await page.goto(abs(`projects.html#${id}`), { waitUntil:'domcontentloaded' });
@@ -157,7 +225,7 @@ async function main() {
   console.log(`✓ Интерактивная фигура вращается: изменилось ${diff.changed} пикселей`);
 
   // Legal pages and legacy local data cleanup.
-  for (const name of ['privacy.html','terms.html','security.html']) {
+  for (const name of ['privacy.html','consent.html','terms.html','security.html']) {
     await page.goto(abs(name), { waitUntil:'domcontentloaded' });
     assert.equal(await page.locator('#cartOverlay, #menuCart, a[href="shop.html#catalog"]').count(), 0);
     assert.ok(await page.locator('.legal-title').count() === 1);

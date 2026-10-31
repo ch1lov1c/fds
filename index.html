@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-RiUuaUNuLqbTP7u1E4eh4HjfdR19B7vFSq3z3vR8was=' 'sha256-y7Ond1eZbDAilW/ev3APy75XbGByKMIYK1hPLWtoMm8='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ncMUnZQFedM59bv3JZTnUcYTwjUeohT+fgKskPJwDHY=' 'sha256-y7Ond1eZbDAilW/ev3APy75XbGByKMIYK1hPLWtoMm8='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.zapnoty.com; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>WEBNICSS® — студия цифровых продуктов</title>
@@ -1618,6 +1618,76 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   text-align:center;box-shadow:0 10px 35px #000a;pointer-events:none}
 .workspace-external-note[hidden]{display:none}
 
+/* ---------- обсуждение проекта: форма и маршрут из каталога ---------- */
+.sv-type-foot .btn-chip.form-link,.sv-cta .btn-chip.form-link{
+  background:rgba(47,230,255,.09);border:1px solid rgba(47,230,255,.42);color:#e9fdff
+}
+.sv-type-foot .btn-chip.form-link:hover,.sv-cta .btn-chip.form-link:hover{background:var(--accent);color:#001012}
+.project-contact{position:relative;isolation:isolate;padding:var(--d-xl) 0;border-top:1px solid var(--line);
+  background:radial-gradient(ellipse at 14% 24%,rgba(47,230,255,.055),transparent 36%),#0a0c0d;scroll-margin-top:80px}
+.project-contact::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:.14;
+  background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:linear-gradient(to bottom,transparent,#000,transparent)}
+.project-contact-grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(38px,7vw,106px);align-items:start}
+.project-contact-copy{padding-top:clamp(10px,2vw,30px)}
+.project-contact-copy .section-display{font-family:var(--f-disp);font-weight:900;font-stretch:110%;font-size:clamp(40px,5.5vw,82px);
+  line-height:.98;letter-spacing:-.035em;margin:30px 0 24px}
+.project-contact-copy .section-display em{color:var(--accent);border:0}
+.project-contact-lead{max-width:430px;color:#b8c0c0;font-size:clamp(15px,1.5vw,18px);line-height:1.65}
+.project-contact-steps{display:grid;gap:20px;margin-top:clamp(35px,5vw,70px);max-width:400px}
+.project-contact-steps>div{display:flex;align-items:flex-start;gap:17px;padding-top:17px;border-top:1px solid #273034}
+.project-contact-steps>div>span{color:var(--accent);font:600 12px var(--f-disp);letter-spacing:.08em;padding-top:3px}
+.project-contact-steps p{display:grid;gap:4px}
+.project-contact-steps b{font-size:15px;font-weight:600}
+.project-contact-steps small{font-size:13px;line-height:1.5;color:#9ba4a4}
+.project-alternatives{display:flex;gap:12px 20px;align-items:center;flex-wrap:wrap;margin-top:36px;font-size:13px;color:#929a9c}
+.project-alternatives a{color:#d7faff;border-bottom:1px solid rgba(47,230,255,.35);padding-bottom:2px}
+.project-alternatives a:hover{color:var(--accent);border-color:var(--accent)}
+.project-form-card{position:relative;min-width:0;padding:clamp(22px,3.4vw,48px);border:1px solid #313d40;border-radius:18px;
+  background:linear-gradient(155deg,rgba(25,32,34,.97),rgba(13,16,17,.98) 60%);box-shadow:0 28px 80px #0005,inset 0 1px #ffffff0b}
+.project-form-card::before{content:"";position:absolute;left:clamp(22px,3.4vw,48px);top:-1px;width:76px;height:2px;background:var(--accent)}
+.project-form-head{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:10px}
+.project-form-head h3{font-family:var(--f-disp);font-weight:800;letter-spacing:-.025em;font-size:clamp(23px,2.5vw,32px);line-height:1.15;margin-top:7px}
+.project-form-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.project-form-mark{display:grid;place-items:center;width:43px;height:43px;flex:none;border:1px solid #3b575b;color:var(--accent);font-size:21px}
+.project-form-hint{font-size:12.5px;color:#a6adad;margin-bottom:24px}
+#projectInquiry fieldset{border:0;min-width:0;display:grid;gap:18px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.project-field{display:grid;gap:8px;min-width:0;font-size:13px;font-weight:600;color:#e7eeee}
+.project-field>b,.project-field>span>b{color:var(--accent);font-weight:600}
+.project-field input,.project-field textarea,.project-field select{appearance:none;-webkit-appearance:none;display:block;width:100%;min-width:0;
+  border:1px solid #344044;border-radius:5px;background:#101719;color:#f5fafb;font:400 15px/1.4 var(--f-body);padding:14px 15px;
+  outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+.project-field input,.project-field select{min-height:51px}
+.project-field textarea{resize:vertical;min-height:112px}
+.project-field input::placeholder,.project-field textarea::placeholder{color:#78878a;opacity:1}
+.project-field input:focus,.project-field textarea:focus,.project-field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,230,255,.12);background:#101a1c}
+.project-field small{color:#97a1a2;font-weight:400;font-size:12px;line-height:1.45}
+.project-select-wrap{display:block;position:relative}
+.project-select-wrap::after{content:"⌄";position:absolute;right:17px;top:12px;color:var(--accent);font-size:19px;pointer-events:none}
+.project-field select{padding-right:42px}
+.project-field select option,.project-field select optgroup{background:#101719;color:#fff}
+.project-honey{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.project-consent{display:flex;align-items:flex-start;gap:12px;color:#cbd2d2;font-size:13px;line-height:1.5;font-weight:400;cursor:pointer}
+.project-consent input{width:19px;height:19px;margin:1px 0 0;flex:none;accent-color:var(--accent);cursor:pointer}
+.project-consent a,.project-privacy-note a{color:#b4f7ff;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(47,230,255,.45)}
+.project-privacy-note{font-size:12px;line-height:1.55;color:#9da8a8;margin-top:-9px}
+.project-send{height:56px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:var(--accent);color:#001014;font-size:15px;font-weight:700;padding:5px 5px 5px 19px;border-radius:4px;transition:filter .2s,transform .2s}
+.project-send span:last-child{height:46px;width:46px;display:grid;place-items:center;background:#001c221d;font-size:19px}
+.project-send:not(:disabled):hover{filter:brightness(1.08);transform:translateY(-1px)}
+#projectInquiry fieldset:disabled .project-send{opacity:.42;cursor:not-allowed}
+#projectInquiry fieldset:disabled input,#projectInquiry fieldset:disabled textarea,#projectInquiry fieldset:disabled select{cursor:not-allowed}
+.project-form-availability{margin:0 0 20px;padding:12px 14px;border:1px solid #705a39;border-radius:5px;background:#2a2115;color:#e8dac1;font-size:13px;line-height:1.5}
+.project-form-availability a{color:#d4f9ff;text-decoration:underline;text-underline-offset:3px}
+.project-form-availability[hidden]{display:none}
+.project-form-status{min-height:1.4em;margin-top:16px;font-size:13px;line-height:1.5;color:#d2c4a9}
+.project-form-status:empty{display:none}
+.project-form-status.is-success{color:#a7f3cf}
+.project-contact :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:850px){.project-contact-grid{grid-template-columns:1fr;gap:35px}.project-contact-steps{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:16px;margin-top:30px}.project-contact-copy .section-display{margin:22px 0 16px}.project-alternatives{margin-top:24px}}
+@media(max-width:480px){.project-contact{padding:60px 0}.project-contact-grid{gap:28px}.project-contact-steps{grid-template-columns:1fr;gap:14px}.project-form-card{padding:22px 19px}.project-form-card::before{left:19px}.project-contact-copy .section-display{font-size:clamp(37px,10vw,52px)}.project-form-head h3{font-size:23px}}
+
 </style>
 <!-- WORKSPACE-STYLE-END -->
 <link rel="stylesheet" href="fonts.css">
@@ -1678,6 +1748,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 </div>
 
 <main>
+  <h1 class="sr-only">WEBNICSS — создание сайтов, ботов и цифровых решений</h1>
 
   <!-- ============ HERO ============ -->
   <div class="hero-wrap" id="home">
@@ -1761,7 +1832,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="teaser-head">
         <div>
           <p class="ac-label" data-reveal="soft"><span class="crosshair sm"></span>Проекты · © 2026</p>
-          <h2 class="section-display" data-reveal="lit">ЖИВЫЕ <em>ПРОДУКТЫ</em></h2>
+          <h2 class="section-display" data-reveal="lit">ПРОЕКТЫ <em>И РЕШЕНИЯ</em></h2>
         </div>
         <a class="btn-chip" href="projects.html#projects-list" data-cursor>
           <span class="btn-label">Все проекты</span>
@@ -1798,9 +1869,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
                 <span class="cm-node n3" style="left:76%;top:44%"></span>
               </span>
               <span class="cm-price">
-                <span><b>1 500 ₽</b><span class="cm-line w70"></span></span>
-                <span><b>3 200 ₽</b><span class="cm-line w70"></span></span>
-                <span><b>900 ₽</b><span class="cm-line w70"></span></span>
+                <span><b>Диагностика</b><span class="cm-line w70"></span></span>
+                <span><b>Обслуживание</b><span class="cm-line w70"></span></span>
+                <span><b>Ремонт</b><span class="cm-line w70"></span></span>
               </span>
             </span>
           </span>
@@ -1820,7 +1891,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           </span>
           <span class="pj-mini-cap"><small>Telegram-бот</small>@webnicss_bot</span>
         </a>
-        <a class="pj-mini st" href="projects.html#project-automation" data-cursor aria-label="Концепт: автоматизация заказов">
+        <a class="pj-mini st" href="projects.html#project-automation" data-cursor aria-label="Решение для бизнеса: автоматизация заказов">
           <span class="cm cm-broadcast" aria-hidden="true">
             <span class="cm-bar"><i></i><i></i><i></i><span class="cm-url"></span></span>
             <span class="cm-body">
@@ -1833,7 +1904,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
               <span class="cm-rows cm-hide"><span class="cm-rrow"></span><span class="cm-rrow"></span><span class="cm-rrow"></span></span>
             </span>
           </span>
-          <span class="pj-mini-cap"><small>Концепт</small>Автоматизация заказов</span>
+          <span class="pj-mini-cap"><small>Решение для бизнеса</small>Автоматизация заказов</span>
         </a>
       </div>
     </div>
@@ -1846,6 +1917,45 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <h2 class="section-display" data-reveal="lit">ТВОРЧЕСКАЯ <em>КОМАНДА</em></h2>
       <p class="wk-intro" data-reveal="soft">От первого брифа до релиза: для каждой задачи — своё направление работы.</p>
       <div class="tm-cards" id="teamCards"></div>
+    </div>
+  </section>
+
+  <!-- ============ ОБСУЖДЕНИЕ ПРОЕКТА ============ -->
+  <section class="project-contact" id="project-form" data-nav-compact aria-labelledby="projectFormTitle">
+    <div class="wrap project-contact-grid">
+      <div class="project-contact-copy">
+        <p class="ac-label"><span class="crosshair sm"></span>На связи · Ваш проект</p>
+        <h2 class="section-display" id="projectFormTitle">ЕСТЬ ИДЕЯ?<br><em>ОБСУДИМ.</em></h2>
+        <p class="project-contact-lead">Расскажите, что вы хотите создать. Разберём задачу и предложим подходящий формат работы.</p>
+        <div class="project-contact-steps" aria-label="Как мы начинаем работу">
+          <div><span>01</span><p><b>Вы рассказываете</b><small>Опишите задачу и оставьте удобный контакт.</small></p></div>
+          <div><span>02</span><p><b>Мы связываемся</b><small>Обсуждаем детали, стоимость и сроки.</small></p></div>
+        </div>
+        <div class="project-alternatives">
+          <span>Или напишите напрямую</span>
+          <a href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+          <a href="https://vk.me/webnicss" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a>
+        </div>
+      </div>
+      <div class="project-form-card">
+        <div class="project-form-head"><div><span class="project-form-eyebrow">Заявка на проект</span><h3>Давайте начнём</h3></div><span class="project-form-mark" aria-hidden="true">↗</span></div>
+        <p class="project-form-hint">Поля со звёздочкой обязательны для связи.</p>
+        <form id="projectInquiry" action="#project-form" method="post" data-zapnoty-id="" data-honeypot-name="_honey">
+          <p id="projectFormAvailability" class="project-form-availability">Сейчас форма недоступна. Напишите в <a href="https://t.me/webnicssmng" target="_blank" rel="noopener noreferrer">Telegram</a> или <a href="https://vk.me/webnicss" target="_blank" rel="noopener noreferrer">ВКонтакте</a>.</p>
+          <fieldset disabled>
+            <legend class="sr-only">Данные для обсуждения проекта</legend>
+            <label class="project-field" for="projectName"><span>Ваше имя <b aria-hidden="true">*</b></span><input id="projectName" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Как к вам обращаться?"></label>
+            <label class="project-field" for="projectContact"><span>Удобный контакт <b aria-hidden="true">*</b></span><input id="projectContact" name="contact" type="text" autocomplete="off" required minlength="4" maxlength="160" aria-describedby="projectContactHint" placeholder="Телефон, e-mail или @username"><small id="projectContactHint">Укажите один способ связи, по которому мы сможем ответить.</small></label>
+            <label class="project-field" for="projectService"><span>Услуга</span><span class="project-select-wrap"><select id="projectService" name="service"><option value="general">Пока не знаю / обсудить задачу</option></select></span></label>
+            <label class="project-field" for="projectMessage"><span>О проекте <b aria-hidden="true">*</b></span><textarea id="projectMessage" name="message" required minlength="10" maxlength="1200" rows="4" placeholder="Коротко опишите задачу, сроки и пожелания"></textarea></label>
+            <div class="project-honey" aria-hidden="true"><label>Сайт компании <input type="text" name="_honey" data-honeypot tabindex="-1" autocomplete="off"></label></div>
+            <label class="project-consent"><input type="checkbox" name="consent" required><span>Я даю <a href="consent.html" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a> для ответа на заявку.</span></label>
+            <p class="project-privacy-note">Подробнее: <a href="privacy.html" target="_blank" rel="noopener noreferrer">политика конфиденциальности</a>. Не указывайте пароли и данные карт.</p>
+            <button id="projectSend" class="project-send" type="submit"><span>Отправить заявку</span><span aria-hidden="true">↗</span></button>
+          </fieldset>
+          <p id="projectFormStatus" class="project-form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -1884,7 +1994,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           <span class="ft-caption">Телефон менеджера</span>
           <a class="ul ft-contact-value" href="tel:+79608714367">+7 (960) 871-43-67</a>
           <span class="ft-caption">Электронная почта</span>
-          <a class="ul ft-contact-value" href="mailto:vladkarpovic21@gmail.com">vladkarpovic21@gmail.com</a>
+          <a class="ul ft-contact-value" href="mailto:info@webnicss.ru">info@webnicss.ru</a>
         </div>
         <nav class="ft-col" aria-label="Социальные сети">
           <span class="ft-h"><i class="sq"></i>Мы в сети</span>
@@ -1907,6 +2017,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         <nav class="ft-col" aria-label="Документы и безопасность">
           <span class="ft-h"><i class="sq"></i>Информация</span>
           <a class="ul" href="privacy.html">Политика конфиденциальности</a>
+          <a class="ul" href="consent.html">Согласие на обработку данных</a>
           <a class="ul" href="terms.html">Условия заказа и возврата</a>
           <a class="ul" href="security.html">Безопасность</a>
           <span class="ft-note">Онлайн-студия<br>На связи в Telegram и ВКонтакте</span>
@@ -2011,6 +2122,8 @@ const money = n => n.toLocaleString('ru-RU') + ' ₽';
 // Telegram открывает черновик: посетитель сам решает, отправлять ли сообщение.
 const telegramContact = text => `https://t.me/webnicssmng?text=${encodeURIComponent(text)}`;
 const vkContact = 'https://vk.me/webnicss';
+// В URL передаём только идентификатор услуги, никогда — данные посетителя.
+const projectFormLink = (id, index) => `index.html?service=${encodeURIComponent(id + '.' + index)}#project-form`;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasGsap = !!(window.gsap && window.ScrollTrigger && window.Lenis);
@@ -2094,7 +2207,7 @@ const SERVICES = [
   ['3D', ['Модели и WebGL-сцены', 'Рендеры и анимация']],
   ['Видео', ['Промо и Reels', 'Монтаж и цветокор']],
   ['Telegram', ['Оформление каналов', 'Сообщества и чаты']],
-  ['Автоматизация', ['Интеграции и API', 'Поддержка и SLA']],
+  ['Автоматизация', ['Интеграции и API', 'Поддержка проектов']],
 ];
 /* Детальный каталог типов внутри каждой услуги.
    p — базовая цена, from:true — цена «от», p:null — по запросу после брифа */
@@ -2102,81 +2215,81 @@ const SERVICE_TYPES = {
   sites: {
     lead: 'От одностраничного лендинга до магазина: авторский дизайн, адаптив, скорость и заявки, которые не теряются.',
     types: [
-      { n: 'Лендинг под ключ', d: 'Одностраничный сайт с сильным оффером, блоком услуг и портфолио. Заявки падают в Telegram и на почту.', p: 45000, from: true, t: 'от 7 дней', f: ['Дизайн с нуля, без шаблонов', 'Адаптив и скорость 90+ в Lighthouse', 'Домен и SSL подключаем мы'] },
-      { n: 'Сайт с заявками в CRM', d: 'Многостраничный сайт компании: услуги, кейсы, формы. Заявки сразу в CRM и Telegram с защитой от спама.', p: 65000, from: true, t: 'от 10 дней', f: ['Интеграция с CRM и Telegram', 'Антиспам и валидация', 'Метрика и цели на старте'] },
-      { n: 'Сайт-калькулятор', d: 'Клиент собирает параметры заказа и сразу видит смету. Расчёт уходит вам в чат и клиенту на почту в PDF.', p: 85000, from: true, t: 'от 16 дней', f: ['Любые формулы и параметры', 'Смета в PDF на почту', 'Экспорт расчёта в CRM'] },
-      { n: 'Интернет-магазин', d: 'Каталог, оформление заказа, личный кабинет и учёт — для цифровых или физических товаров.', p: 120000, from: true, t: 'от 21 дня', f: ['Способ оплаты по согласованию', 'Личный кабинет и заказы', 'Синхронизация остатков'] },
+      { n: 'Лендинг под ключ', d: 'Одностраничный сайт с сильным оффером, блоком услуг и портфолио. Заявки падают в Telegram и на почту.', p: 24900, from: true, t: 'от 7 дней', f: ['Дизайн с нуля, без шаблонов', 'Адаптивная вёрстка и оптимизация', 'Домен и SSL подключаем мы'] },
+      { n: 'Сайт с заявками в CRM', d: 'Многостраничный сайт компании: услуги, кейсы, формы. Заявки сразу в CRM и Telegram с защитой от спама.', p: 49900, from: true, t: 'от 10 дней', f: ['Интеграция с CRM и Telegram', 'Антиспам и валидация', 'Метрика и цели на старте'] },
+      { n: 'Сайт-калькулятор', d: 'Клиент собирает параметры заказа и сразу видит смету. Расчёт уходит вам в чат и клиенту на почту в PDF.', p: 39900, from: true, t: 'от 16 дней', f: ['Любые формулы и параметры', 'Смета в PDF на почту', 'Экспорт расчёта в CRM'] },
+      { n: 'Интернет-магазин', d: 'Каталог, оформление заказа, личный кабинет и учёт — для цифровых или физических товаров.', p: 69900, from: true, t: 'от 21 дня', f: ['Способ оплаты по согласованию', 'Личный кабинет и заказы', 'Синхронизация остатков'] },
       { n: 'Web3 / Crypto-проект', d: 'Сайт с подключением кошельков, минтом, дашбордом токена и интеграцией TON/ETH. С аудитом логики.', p: null, t: 'после брифа', f: ['TON Connect и EVM-кошельки', 'Работа с контрактами', 'Аудит и тесты перед релизом'] },
     ],
   },
   miniapp: {
     lead: 'Mini Apps — полноценные приложения внутри Telegram: без установки, с оплатой в пару тапов.',
     types: [
-      { n: 'Mini App магазин', d: 'Каталог, оформление и история заказов прямо в интерфейсе Telegram.', p: 60000, from: true, t: 'от 14 дней', f: ['Нативная оплата Telegram', 'Синхрон с ботом и складом', 'Push о статусе заказа'] },
-      { n: 'Mini App запись и брони', d: 'Слоты, мастера, напоминания и предоплата — для услуг с расписанием.', p: 45000, from: true, t: 'от 12 дней', f: ['Живое расписание', 'Выбор мастера и услуги', 'Отмена и перенос внутри'] },
-      { n: 'Каталог-витрина', d: 'Эффектная презентация продуктов или портфолио с 3D и анимациями.', p: 35000, from: true, t: 'от 10 дней', f: ['Тёмный премиальный UI', 'Видео и 3D в карточках', 'Аналитика просмотров'] },
-      { n: 'Игровая механика', d: 'Квесты, колесо фортуны, баллы и розыгрыши для удержания аудитории.', p: 60000, from: true, t: 'от 18 дней', f: ['Награды и баллы', 'Антифрод-логика', 'Интеграция с CRM'] },
+      { n: 'Mini App магазин', d: 'Каталог, оформление и история заказов прямо в интерфейсе Telegram.', p: 49900, from: true, t: 'от 14 дней', f: ['Нативная оплата Telegram', 'Синхрон с ботом и складом', 'Push о статусе заказа'] },
+      { n: 'Mini App запись и брони', d: 'Слоты, мастера, напоминания и предоплата — для услуг с расписанием.', p: 34900, from: true, t: 'от 12 дней', f: ['Живое расписание', 'Выбор мастера и услуги', 'Отмена и перенос внутри'] },
+      { n: 'Каталог-витрина', d: 'Эффектная презентация продуктов или портфолио с 3D и анимациями.', p: 24900, from: true, t: 'от 10 дней', f: ['Интерфейс в стиле проекта', 'Видео и 3D в карточках', 'Аналитика просмотров'] },
+      { n: 'Игровая механика', d: 'Квесты, колесо фортуны, баллы и розыгрыши для удержания аудитории.', p: 49900, from: true, t: 'от 18 дней', f: ['Награды и баллы', 'Антифрод-логика', 'Интеграция с CRM'] },
     ],
   },
   bots: {
     lead: 'Боты для поддержки, записи и обработки обращений — сценарии и интеграции согласуем под задачу.',
     types: [
-      { n: 'Бот-магазин с автовыдачей', d: 'Каталог, оформление заказов, оплата и выдача. Состав интеграций согласуем под ваш проект.', p: 45000, from: true, t: 'от 10 дней', f: ['Склад ключей и вебхуки', 'Выдача в чат, на почту и в ЛК', 'Mini App поверх каталога'] },
-      { n: 'ИИ-бот поддержки', d: 'Саппорт на языковых моделях с базой знаний компании: отвечает мгновенно, эскалирует человеку.', p: 60000, from: true, t: 'от 12 дней', f: ['База знаний из ваших файлов', 'Передача диалога человеку', 'Аналитика частых вопросов'] },
-      { n: 'Бот записи и бронирования', d: 'Слоты, напоминания, предоплата и календарь — для услуг с записью клиентов.', p: 35000, from: true, t: 'от 9 дней', f: ['Синхронизация календаря', 'Напоминания в Telegram', 'Способ предоплаты по согласованию'] },
-      { n: 'Интеграции с CRM и 1С', d: 'Связываем бота с вашими системами: заказы, статусы, оплаты и склад без ручного переноса.', p: 30000, from: true, t: 'от 7 дней', f: ['Амора, Битрикс24, 1С', 'Логи и мониторинг ошибок', 'Документация для команды'] },
+      { n: 'Бот-магазин с автовыдачей', d: 'Каталог, оформление заказов, оплата и выдача. Состав интеграций согласуем под ваш проект.', p: 34900, from: true, t: 'от 10 дней', f: ['Склад ключей и вебхуки', 'Выдача в чат, на почту и в ЛК', 'Mini App поверх каталога'] },
+      { n: 'ИИ-бот поддержки', d: 'Саппорт на языковых моделях с базой знаний компании: отвечает мгновенно, эскалирует человеку.', p: 39900, from: true, t: 'от 12 дней', f: ['База знаний из ваших файлов', 'Передача диалога человеку', 'Аналитика частых вопросов'] },
+      { n: 'Бот записи и бронирования', d: 'Слоты, напоминания, предоплата и календарь — для услуг с записью клиентов.', p: 24900, from: true, t: 'от 9 дней', f: ['Синхронизация календаря', 'Напоминания в Telegram', 'Способ предоплаты по согласованию'] },
+      { n: 'Интеграции с CRM и 1С', d: 'Связываем бота с вашими системами: заказы, статусы, оплаты и склад без ручного переноса.', p: 24900, from: true, t: 'от 7 дней', f: ['Амора, Битрикс24, 1С', 'Логи и мониторинг ошибок', 'Документация для команды'] },
     ],
   },
   ai: {
     lead: 'Используем инструменты ИИ для автоматизации задач и помогаем командам освоить новые рабочие процессы.',
     types: [
-      { n: 'Внедрение ИИ в процессы', d: 'Аудит рутины и сборка связок: автоответы, генерация контента, обработка документов, ИИ-агенты.', p: 60000, from: true, t: 'от 14 дней', f: ['Аудит и карта автоматизации', 'Промпт-инжиниринг', 'Замер экономии времени'] },
-      { n: 'Обучение команды', d: 'Воркшоп под ваши задачи: сотрудники работают с ИИ уверенно и по гайдлайнам студии.', p: 30000, from: true, t: '2–4 встречи', f: ['Разбор ваших кейсов', 'Шаблоны и промпт-бук', 'Поддержка 30 дней'] },
+      { n: 'Внедрение ИИ в процессы', d: 'Аудит рутины и сборка связок: автоответы, генерация контента, обработка документов, ИИ-агенты.', p: 39900, from: true, t: 'от 14 дней', f: ['Аудит и карта автоматизации', 'Промпт-инжиниринг', 'Замер экономии времени'] },
+      { n: 'Обучение команды', d: 'Воркшоп под ваши задачи: сотрудники работают с ИИ уверенно и по гайдлайнам студии.', p: 14900, from: true, t: '2–4 встречи', f: ['Разбор ваших кейсов', 'Шаблоны и промпт-бук', 'Поддержка 30 дней'] },
     ],
   },
   design: {
     lead: 'UI/UX, бренд-системы и презентации, которые одинаково дорого выглядят на экране и в печати.',
     types: [
-      { n: 'UI/UX под ключ', d: 'Исследование, прототип, дизайн-система и готовые экраны для веба или приложения.', p: 60000, from: true, t: 'от 14 дней', f: ['CJM и кликабельный прототип', 'Компонентная библиотека', 'Светлая и тёмная темы'] },
-      { n: 'Бренд-пак', d: 'Логотип, айдентика, носители и гайдлайн — характер бренда в одной системе.', p: 60000, from: true, t: 'от 12 дней', f: ['3 концепта знака', 'Цвета, шрифты, сетка', 'Гайдлайн в PDF'] },
-      { n: 'Презентация и питч-дек', d: '12–15 слайдов под инвестиции или сделку: структура истории, инфографика, аккуратная типографика.', p: 25000, from: true, t: 'от 8 дней', f: ['Логика истории под задачу', 'Инфографика цифр', 'Анимация и PDF'] },
-      { n: 'Моушн-дизайн', d: 'Анимированные логотипы, интерфейсные анимации и графика для соцсетей.', p: 18000, from: true, t: 'от 7 дней', f: ['Lottie и видео-форматы', 'Звук и тайминг', 'Оптимизация под веб'] },
-      { n: 'Графика и креативы', d: 'Серии постеров, обложки каналов, баннеры и графика в едином стиле.', p: 8000, from: true, t: 'от 3 дней', f: ['Серия в едином стиле', 'Исходники в Figma/PSD', 'Адаптация под форматы'] },
+      { n: 'UI/UX под ключ', d: 'Исследование, прототип, дизайн-система и готовые экраны для веба или приложения.', p: 29900, from: true, t: 'от 14 дней', f: ['CJM и кликабельный прототип', 'Компонентная библиотека', 'Светлая и тёмная темы'] },
+      { n: 'Бренд-пак', d: 'Логотип, айдентика, носители и гайдлайн — характер бренда в одной системе.', p: 24900, from: true, t: 'от 12 дней', f: ['3 концепта знака', 'Цвета, шрифты, сетка', 'Гайдлайн в PDF'] },
+      { n: 'Презентация и питч-дек', d: '12–15 слайдов под инвестиции или сделку: структура истории, инфографика, аккуратная типографика.', p: 14900, from: true, t: 'от 8 дней', f: ['Логика истории под задачу', 'Инфографика цифр', 'Анимация и PDF'] },
+      { n: 'Моушн-дизайн', d: 'Анимированные логотипы, интерфейсные анимации и графика для соцсетей.', p: 9900, from: true, t: 'от 7 дней', f: ['Lottie и видео-форматы', 'Звук и тайминг', 'Оптимизация под веб'] },
+      { n: 'Графика и креативы', d: 'Серии постеров, обложки каналов, баннеры и графика в едином стиле.', p: 5900, from: true, t: 'от 3 дней', f: ['Серия в едином стиле', 'Исходники в Figma/PSD', 'Адаптация под форматы'] },
     ],
   },
   model3d: {
     lead: 'Объёмная графика для сайтов, презентаций и карточек: модели, которые можно покрутить.',
     types: [
-      { n: 'Модели товаров', d: '3D-модели продукции для карточек, AR-примерки и рендеров — с чистой сеткой под веб и движки.', p: 15000, from: true, t: 'от 5 дней', f: ['Retopo, UV и PBR-текстуры', 'Форматы GLB/FBX/USDZ', 'Оптимизация веса модели'] },
-      { n: 'Интерактивная 3D-сцена', d: 'Сцена на сайт с вращением мышью и пальцем — как объект в этом блоке главной.', p: 45000, from: true, t: 'от 12 дней', f: ['Работает без тяжёлых движков', 'Drag-вращение и инерция', 'Оптимизация под мобильные'] },
-      { n: '3D-логотип', d: 'Объёмная версия знака бренда для видео, заставок и соцсетей.', p: 15000, from: true, t: 'от 6 дней', f: ['Несколько ракурсов', 'Цикл анимации знака', 'Исходники Blender/C4D'] },
-      { n: 'Рендеры и анимация', d: 'Стилизованные ролики и статичные кадры с кинематографичным светом.', p: 20000, from: true, t: 'от 8 дней', f: ['Сценарий и раскадровка', 'Цветокоррекция', '4K и вертикальные версии'] },
+      { n: 'Модели товаров', d: '3D-модели продукции для карточек, AR-примерки и рендеров — с чистой сеткой под веб и движки.', p: 9900, from: true, t: 'от 5 дней', f: ['Retopo, UV и PBR-текстуры', 'Форматы GLB/FBX/USDZ', 'Оптимизация веса модели'] },
+      { n: 'Интерактивная 3D-сцена', d: 'Сцена на сайт с вращением мышью и пальцем — как объект в этом блоке главной.', p: 29900, from: true, t: 'от 12 дней', f: ['Работает без тяжёлых движков', 'Drag-вращение и инерция', 'Оптимизация под мобильные'] },
+      { n: '3D-логотип', d: 'Объёмная версия знака бренда для видео, заставок и соцсетей.', p: 8900, from: true, t: 'от 6 дней', f: ['Несколько ракурсов', 'Цикл анимации знака', 'Исходники Blender/C4D'] },
+      { n: 'Рендеры и анимация', d: 'Стилизованные ролики и статичные кадры с кинематографичным светом.', p: 12900, from: true, t: 'от 8 дней', f: ['Сценарий и раскадровка', 'Цветокоррекция', '4K и вертикальные версии'] },
     ],
   },
   video: {
     lead: 'Монтаж и моушн: от 15-секундного Reels до презентационного фильма бренда.',
     types: [
-      { n: 'Промо-ролик', d: 'Полный цикл: сценарий, монтаж, цветокоррекция, моушн-графика и звук.', p: 35000, from: true, t: 'от 10 дней', f: ['До 3 правок включено', 'Хронометраж до 90 секунд', 'Версии под все площадки'] },
-      { n: 'Пак Reels / Shorts (5 шт)', d: 'Серия коротких видео с ритмичным монтажом, субтитрами и хуком в первые секунды.', p: 25000, from: true, t: 'от 7 дней', f: ['5 роликов в едином стиле', 'Субтитры и хук-кадры', 'Вертикаль 9:16'] },
-      { n: 'Монтаж YouTube и подкастов', d: 'Длинный материал: сведение дорожек, чистка звука, нарезки и обложки для выпуска.', p: 12000, from: true, t: 'от 5 дней', f: ['До 30 минут готового видео', 'Субтитры и таймкоды', 'Обложка в комплекте'] },
-      { n: 'Цвет и звук', d: 'Постпродакшн готового материала: цветокоррекция, чистка звука, саунд-дизайн.', p: 8000, from: true, t: 'от 4 дней', f: ['Единый цветовой стиль', 'Мастер под веб и эфир', 'Легальные библиотеки музыки'] },
+      { n: 'Промо-ролик', d: 'Полный цикл: сценарий, монтаж, цветокоррекция, моушн-графика и звук.', p: 24900, from: true, t: 'от 10 дней', f: ['До 3 правок включено', 'Хронометраж до 90 секунд', 'Версии под все площадки'] },
+      { n: 'Пак Reels / Shorts (5 шт)', d: 'Серия коротких видео с ритмичным монтажом, субтитрами и хуком в первые секунды.', p: 12900, from: true, t: 'от 7 дней', f: ['5 роликов в едином стиле', 'Субтитры и хук-кадры', 'Вертикаль 9:16'] },
+      { n: 'Монтаж YouTube и подкастов', d: 'Длинный материал: сведение дорожек, чистка звука, нарезки и обложки для выпуска.', p: 7900, from: true, t: 'от 5 дней', f: ['До 30 минут готового видео', 'Субтитры и таймкоды', 'Обложка в комплекте'] },
+      { n: 'Цвет и звук', d: 'Постпродакшн готового материала: цветокоррекция, чистка звука, саунд-дизайн.', p: 5900, from: true, t: 'от 4 дней', f: ['Единый цветовой стиль', 'Мастер под веб и эфир', 'Легальные библиотеки музыки'] },
     ],
   },
   tg: {
     lead: 'Оформляем Telegram-каналы и помогаем настроить структуру сообществ под задачу.',
     types: [
-      { n: 'Оформление канала', d: 'Аватар, описание, закрепы, обложки постов и контент-план на месяц.', p: 12000, from: true, t: 'от 5 дней', f: ['Айдентика и закрепы', 'Контент-план на месяц', 'Стартовая аналитика'] },
-      { n: 'Комьюнити и чаты', d: 'Создаём и настраиваем сообщество: правила, бот-модератор, роли и онбординг.', p: 20000, from: true, t: 'от 7 дней', f: ['Настройки модерации по задаче', 'Сценарии знакомства участников', 'Настройка ролей и правил'] },
-      { n: 'Подготовка публикаций', d: 'Тексты и изображения для канала по согласованным темам. Объём и формат уточняются перед началом работы.', p: null, t: 'после обсуждения', f: ['Подготовка текстов', 'Визуал в выбранном стиле', 'Согласование материалов'] },
+      { n: 'Оформление канала', d: 'Аватар, описание, закрепы, обложки постов и контент-план на месяц.', p: 7900, from: true, t: 'от 5 дней', f: ['Айдентика и закрепы', 'Контент-план на месяц', 'Стартовая аналитика'] },
+      { n: 'Комьюнити и чаты', d: 'Создаём и настраиваем сообщество: правила, бот-модератор, роли и онбординг.', p: 9900, from: true, t: 'от 7 дней', f: ['Настройки модерации по задаче', 'Сценарии знакомства участников', 'Настройка ролей и правил'] },
+      { n: 'Подготовка публикаций', d: 'Тексты и изображения для трёх публикаций по согласованным темам и материалам.', p: 4900, from: true, t: 'от 3 дней', f: ['Три публикации', 'Визуал в выбранном стиле', 'Согласование материалов'] },
     ],
   },
   integrations: {
     lead: 'Связываем сервисы между собой и убираем ручную работу: код, который работает без вас.',
     types: [
-      { n: 'Интеграции по API', d: 'CRM, таблицы, мессенджеры, платёжные шлюзы и вебхуки — в одной работающей связке.', p: 25000, from: true, t: 'от 6 дней', f: ['Обработка ошибок и ретраи', 'Логи и мониторинг', 'Документация для команды'] },
-      { n: 'Автоматизация рутины', d: 'Сценарии в n8n/Make: заявки, счета, уведомления и отчёты без участия человека.', p: 20000, from: true, t: 'от 4 дней', f: ['Карта процессов до старта', 'Замена ручных операций', 'Инструкция для сотрудников'] },
-      { n: 'Внутренние приложения', d: 'Дашборды, системы учёта и кабинеты с ролями, отчётами и выгрузками.', p: 60000, from: true, t: 'от 20 дней', f: ['Роли и права доступа', 'Отчёты и выгрузки', 'Хостинг и поддержка'] },
-      { n: 'Поддержка и SLA', d: 'Дежурство, бэкапы, обновления и правки с реакцией в течение часа.', p: 15000, from: true, t: 'за месяц', f: ['Реакция до 1 часа', 'Бэкапы и мониторинг 24/7', 'Пул часов на доработки'] },
+      { n: 'Интеграции по API', d: 'CRM, таблицы, мессенджеры, платёжные шлюзы и вебхуки — в одной работающей связке.', p: 19900, from: true, t: 'от 6 дней', f: ['Обработка ошибок и ретраи', 'Логи и мониторинг', 'Документация для команды'] },
+      { n: 'Автоматизация рутины', d: 'Сценарии в n8n/Make: заявки, счета, уведомления и отчёты без участия человека.', p: 14900, from: true, t: 'от 4 дней', f: ['Карта процессов до старта', 'Замена ручных операций', 'Инструкция для сотрудников'] },
+      { n: 'Внутренние приложения', d: 'Дашборды, системы учёта и кабинеты с ролями, отчётами и выгрузками.', p: 49900, from: true, t: 'от 20 дней', f: ['Роли и права доступа', 'Отчёты и выгрузки', 'Хостинг и поддержка'] },
+      { n: 'Поддержка сайта или бота', d: 'Обновления, резервные копии и небольшие улучшения по согласованному плану.', p: 8900, from: true, t: 'за месяц', f: ['Обновления и резервные копии', 'Контроль работы по согласованию', 'Объём и время ответа обсуждаются'] },
     ],
   },
 };
@@ -2298,6 +2411,9 @@ if ($('#svRoot')) {
                 <a class="btn-chip ghost" href="${vkContact}" target="_blank" rel="noopener noreferrer" data-cursor aria-label="Написать в ВК об услуге ${t.n}">
                   <span class="btn-label">Написать в ВК</span><span class="btn-arrow" aria-hidden="true">↗</span>
                 </a>
+                <a class="btn-chip form-link" href="${projectFormLink(id, i)}" data-cursor aria-label="Обсудить проект по услуге ${t.n}">
+                  <span class="btn-label">Обсудить проект</span><span class="btn-arrow" aria-hidden="true">↓</span>
+                </a>
               </div>
             </div>
           </article>`).join('')}
@@ -2311,6 +2427,9 @@ if ($('#svRoot')) {
           </a>
           <a class="btn-chip big ghost" href="${vkContact}" target="_blank" rel="noopener noreferrer" data-cursor>
             <span class="btn-label">Написать в ВК</span><span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="btn-chip big form-link" href="index.html#project-form" data-cursor>
+            <span class="btn-label">Обсудить проект</span><span class="btn-arrow" aria-hidden="true">↓</span>
           </a>
         </div>
       </div>`;
@@ -2328,6 +2447,115 @@ if ($('#svRoot')) {
   });
   addEventListener('hashchange', () => { if ($('#svRoot')) renderService(svIdFromURL(), false); });
 }
+
+
+/* ============================================================
+   ФОРМА ПРОЕКТА. Открытый ID формы Zapnoty, не ключ и не токен бота.
+   Пока ID не задан, поля заблокированы и данные никуда не отправляются.
+   ============================================================ */
+(function projectInquiry() {
+  const form = $('#projectInquiry');
+  if (!form) return;
+  const fields = form.querySelector('fieldset');
+  const status = $('#projectFormStatus');
+  const availability = $('#projectFormAvailability');
+  const send = $('#projectSend');
+  const select = $('#projectService');
+  const honey = form.querySelector('[data-honeypot]');
+  const startedAt = Date.now();
+  let sentId = '', fingerprint = '', consentAt = '';
+
+  // Внешний service-параметр — только ключ из локального каталога. Не вставляем
+  // произвольную строку URL в DOM и не передаём персональные данные в адресе.
+  SERVICE_IDS.forEach((id, groupIndex) => {
+    const group = document.createElement('optgroup');
+    group.label = SERVICES[groupIndex][0];
+    SERVICE_TYPES[id].types.forEach((entry, i) => {
+      const option = document.createElement('option');
+      option.value = `${id}.${i}`;
+      option.textContent = entry.n;
+      group.appendChild(option);
+    });
+    select.appendChild(group);
+  });
+  const requested = new URLSearchParams(location.search).get('service') || '';
+  if (/^[a-z0-9]+\.\d{1,2}$/i.test(requested) && [...select.options].some(option => option.value === requested)) {
+    select.value = requested;
+  }
+
+  const publicId = (form.dataset.zapnotyId || '').trim();
+  const honeyName = (form.dataset.honeypotName || '_honey').trim();
+  const validId = /^[A-Za-z0-9_-]{3,100}$/.test(publicId);
+  const validHoney = /^_[A-Za-z0-9_]{2,60}$/.test(honeyName) && !['_request_id', '_submit_time'].includes(honeyName);
+  const secureContext = location.protocol === 'https:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!validId || !validHoney || !secureContext) {
+    fields.disabled = true;
+    return;
+  }
+  fields.disabled = false;
+  availability.hidden = true;
+  status.textContent = '';
+
+  function requestId() {
+    if (globalThis.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    if (globalThis.crypto && typeof crypto.getRandomValues === 'function') {
+      const bytes = new Uint8Array(16); crypto.getRandomValues(bytes);
+      return Array.from(bytes, value => value.toString(16).padStart(2, '0')).join('');
+    }
+    // В современных HTTPS-браузерах используется crypto; запасной вариант
+    // нужен только для идентификатора повторной отправки, не для авторизации.
+    return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+  }
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!form.reportValidity() || send.disabled) return;
+    const selected = select.options[select.selectedIndex];
+    const payload = {
+      name: form.elements.name.value.trim(),
+      contact: form.elements.contact.value.trim(),
+      subject: selected ? selected.textContent : 'Обсудить проект',
+      message: form.elements.message.value.trim(),
+      consent: 'Дано: 2026-10-31-v2',
+      consent_version: '2026-10-31-v2',
+      _submit_time: startedAt,
+    };
+    if (payload.name.length < 2 || payload.contact.length < 4 || payload.message.length < 10) {
+      status.textContent = 'Проверьте имя, контакт и описание задачи.';
+      return;
+    }
+    const nextFingerprint = JSON.stringify([payload.name, payload.contact, payload.subject, payload.message]);
+    if (!sentId || fingerprint !== nextFingerprint) {
+      sentId = requestId(); fingerprint = nextFingerprint; consentAt = new Date().toISOString();
+    }
+    payload.consent_time = consentAt;
+    payload._request_id = sentId;
+    payload[honeyName] = honey.value;
+    send.disabled = true;
+    status.textContent = 'Отправляем заявку…';
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 30000);
+    try {
+      const response = await fetch(`https://api.zapnoty.com/f/${encodeURIComponent(publicId)}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload), signal: controller.signal,
+        credentials: 'omit', referrerPolicy: 'strict-origin-when-cross-origin',
+      });
+      let result = null;
+      try { result = await response.json(); } catch (_) { /* вернём честную ошибку */ }
+      if (!response.ok || !result || result.ok !== true) throw new Error('not accepted');
+      const selectedValue = select.value;
+      form.reset(); select.value = selectedValue;
+      sentId = ''; fingerprint = ''; consentAt = '';
+      status.textContent = 'Запрос отправлен. Если мы не ответим, пожалуйста, напишите в Telegram или ВКонтакте.';
+      status.classList.add('is-success');
+    } catch (_) {
+      status.classList.remove('is-success');
+      status.textContent = 'Не удалось отправить заявку. Повторите попытку или напишите в Telegram или ВКонтакте. Текст формы сохранён на этой странице.';
+    } finally {
+      clearTimeout(timer); send.disabled = false;
+    }
+  });
+}());
 
 /* подпись лоадера под текущую страницу */
 (function loaderLabel() {

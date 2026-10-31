@@ -130,7 +130,7 @@ for text in (main_fallback, core_fallback):
 def csp_hash(text):
     return "'sha256-" + base64.b64encode(hashlib.sha256(text.encode('utf-8')).digest()).decode('ascii') + "'"
 
-policy = "default-src 'self'; script-src 'self' " + csp_hash(main_fallback) + ' ' + csp_hash(core_fallback) + "; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'"
+policy = "default-src 'self'; script-src 'self' " + csp_hash(main_fallback) + ' ' + csp_hash(core_fallback) + "; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.zapnoty.com; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'"
 meta = '<meta http-equiv="Content-Security-Policy" content="' + policy + '">'
 html, n = re.subn(r'<meta\s+http-equiv="Content-Security-Policy"\s+content="[^"]*">', lambda _: meta, html, count=1, flags=re.I)
 if n != 1:
